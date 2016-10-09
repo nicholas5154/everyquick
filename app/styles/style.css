@@ -1,0 +1,9 @@
+/* Empty. Add your own CSS if you like */
+.item .badge{
+	top: auto;
+	right: auto;
+}
+
+#relative{
+	position:relative;
+}
