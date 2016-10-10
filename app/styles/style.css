@@ -1,4 +1,38 @@
 /* Empty. Add your own CSS if you like */
+
+#landing{
+	display:flex;
+	flex-direction: column;
+	justify-content: center;
+	height: 100%;
+}
+
+.scroll{
+	height: 100%;
+}
+
+#landing h1{
+	font-weight: 800;
+	font-size: 50px;
+}
+
+#landing #catch-phrase{
+	margin-bottom: 40px;
+}
+
+#landing #catch-phrase p{
+	font-size: 12px;
+	line-height: 10px;
+	display: box;
+	width: 100%;
+	text-align: center;
+}
+
+#landing .padding{
+	padding-right: 50px;
+	padding-left: 50px;
+}
+
 .item .badge{
 	top: auto;
 	right: auto;

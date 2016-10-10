@@ -38,9 +38,22 @@
     <script src="bower_components/ionic/release/js/ionic-angular.js"></script>
     <script src="bower_components/ngCordova/dist/ng-cordova.js"></script>
     <script src="bower_components/firebase/firebase.js"></script>
-    <script src="bower_components/angularfire/dist/angularfire.min.js"></script>
+    <script src="bower_components/angularfire/dist/angularfire.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
+
+    <!-- firebase initialization -->
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyDREA7o7qYpZZ56GO8fkmdge_QZ3Hd5VIM",
+        authDomain: "everyquick-c7747.firebaseapp.com",
+        databaseURL: "https://everyquick-c7747.firebaseio.com",
+        storageBucket: "everyquick-c7747.appspot.com",
+        messagingSenderId: "766784212436"
+      };
+      firebase.initializeApp(config);
+    </script>
 
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
@@ -49,7 +62,11 @@
     <!-- build:js scripts/scripts.js -->
     <script src="scripts/app.js"></script>
     <script src="scripts/configuration.js"></script>
+    <script src="scripts/services/auth.js"></script>
+    <script src="scripts/controllers/landing.js"></script>
+    <script src="scripts/controllers/signup.js"></script>
     <!-- endbuild -->
+
   </head>
   <body ng-app="everyquickApp">
   <ion-nav-bar class="bar-dark">
@@ -59,7 +76,6 @@
   <ion-nav-view>
     <ion-view>
       <ion-content></ion-content>
-      <ion-footer-bar></ion-footer-bar>
     </ion-view>
   </ion-nav-view>
   </body>

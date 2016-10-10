@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('everyquickApp', ['ionic'])
+angular.module('everyquickApp', ['ionic', 'firebase'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -25,13 +25,21 @@ angular.module('everyquickApp', ['ionic'])
 
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
+      .state('landing', {
+        url: "/landing",
+        templateUrl: 'views/landing.html'
+      })
+      .state('signup', {
+        url: "/signup",
+        templateUrl: 'views/signup.html'
+      })
       .state('tabs', {
           url: "/tab",
           abstract: true,
           templateUrl: 'views/tabs.html'
       })
       .state('tabs.send', {
-          url: "/",
+          url: "/send",
           views: {
               'send-home': {
                   templateUrl: 'views/send.html',
@@ -57,5 +65,5 @@ angular.module('everyquickApp', ['ionic'])
               }
           }
       });
-  $urlRouterProvider.otherwise('/tab/');
+  $urlRouterProvider.otherwise('/landing');
 })
