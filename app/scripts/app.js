@@ -23,6 +23,8 @@ angular.module('everyquickApp', ['ionic', 'firebase'])
   });
 })
 
+//TODO: routing based on authentication
+//https://github.com/firebase/angularfire/blob/master/docs/guide/user-auth.md#authenticating-with-routers
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
       .state('landing', {
@@ -41,8 +43,17 @@ angular.module('everyquickApp', ['ionic', 'firebase'])
       .state('tabs.send', {
           url: "/send",
           views: {
-              'send-home': {
+              'send': {
                   templateUrl: 'views/send.html',
+                  reloadOnSearch: false
+              }
+          }
+      })
+      .state('tabs.send-new', {
+          url: "/send-new",
+          views: {
+              'send': {
+                  templateUrl: 'views/send-new.html',
                   reloadOnSearch: false
               }
           }
@@ -50,7 +61,7 @@ angular.module('everyquickApp', ['ionic', 'firebase'])
       .state('tabs.delivery', {
           url: "/delivery",
           views: {
-              'delivery-home': {
+              'delivery': {
                   templateUrl: 'views/delivery.html',
                   reloadOnSearch: false
               }
@@ -59,7 +70,7 @@ angular.module('everyquickApp', ['ionic', 'firebase'])
       .state('tabs.mypage', {
           url: "/mypage",
           views: {
-              'mypage-tab': {
+              'mypage': {
                   templateUrl: 'views/mypage.html',
                   reloadOnSearch: false
               }
