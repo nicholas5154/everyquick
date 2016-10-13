@@ -482,6 +482,9 @@ module.exports = function (grunt) {
     grunt.config('concurrent.ionic.tasks', ['ionic:run:' + this.args.join(), 'watch']);
     return grunt.task.run(['init', 'concurrent:ionic']);
   });
+  grunt.registerTask('upload', function() {
+    return grunt.task.run(['init', 'ionic:upload:' + this.args.join()]);
+  });
   grunt.registerTask('build', function() {
     return grunt.task.run(['init', 'ionic:build:' + this.args.join()]);
   });
