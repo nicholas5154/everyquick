@@ -1,18 +1,18 @@
 <ion-view title="에브리퀵">
 	<ion-content>
-		<div ng-controller="LandingCtrl as landing" id="landing">
+		<div id="landing">
 			<h1 class="title text-center">에브리퀵</h1>
 			<div id="catch-phrase">
 				<p>더 빠르게 전달하세요</p>
 				<p>자주 다니는 경로, 가는 김에 돈도 버세요</p>
 				<p>쉽고 저렴하게 당일배송 받아보세요</p>
 			</div>
-			<form class="list padding" ng-submit="landing.login()">
+			<form class="list padding" ng-submit="login()">
 			  <label class="item item-input">
-			    <input type="text" ng-model="landing.email" placeholder="Email">
+			    <input type="email" ng-model="loginData.email" placeholder="Email">
 			  </label>
 			  <label class="item item-input">
-			    <input type="password" ng-model="landing.password" placeholder="Password">
+			    <input type="password" ng-model="loginData.password" placeholder="Password">
 			  </label>
 			  <div class="text-center">
 		        <button class="button button-block button-positive">로그인</button>

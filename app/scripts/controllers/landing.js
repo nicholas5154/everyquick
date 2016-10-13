@@ -9,24 +9,27 @@
 */
 angular.module('everyquickApp')
 .controller('LandingCtrl', 
-	['Auth', '$state', '$ionicViewSwitcher', 
-	function(Auth, $state, $ionicViewSwitcher) {
-		var landing = this;
+	['$scope', 'Auth', '$state', '$ionicViewSwitcher', 
+	function($scope, Auth, $state, $ionicViewSwitcher) {
+		$scope.loginData = {
+			email: "",
+			password: ""
+		};
 		var authData = Auth.$getAuth();
 		if(authData){
 			$state.go('tabs.delivery');
 		}
-		landing.login = function(){
-			firebase.auth().signInWithEmailAndPassword(landing.email, landing.password)
+		$scope.login = function(){
+			firebase.auth().signInWithEmailAndPassword($scope.loginData.email, $scope.loginData.password)
 			.then(function(){
 				$ionicViewSwitcher.nextDirection("forward");
 				$state.go('tabs.delivery');
 			})
 			.catch(function(error) {
-			// Handle Errors here.
-			landing.error = error;
-			landing.errorCode = error.code;
-			landing.errorMessage = error.message;
+				// Handle Errors here.
+				$scope.error = error;
+				$scope.errorCode = error.code;
+				$scope.errorMessage = error.message;
 			// ...
 			});
 		}

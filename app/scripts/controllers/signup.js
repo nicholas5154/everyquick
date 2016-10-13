@@ -9,22 +9,18 @@
 */
 angular.module('everyquickApp')
 .controller('SignupCtrl', 
-	['Auth', '$state', '$ionicViewSwitcher', 
-	function(Auth, $state, $ionicViewSwitcher) {
-		var signup = this;
-
-		this.createUser = function() {
-			signup.message = null;
-			signup.error = null;
-
+	['$scope', 'Auth', '$state', '$ionicViewSwitcher', 
+	function($scope, Auth, $state, $ionicViewSwitcher) {
+		$scope.signupData = {};
+		$scope.createUser = function() {
 			// Create a new user
-			Auth.$createUserWithEmailAndPassword(signup.email, signup.password)
+			Auth.$createUserWithEmailAndPassword($scope.signupData.email, $scope.signupData.password)
 			.then(function(firebaseUser) {
-				signup.message = "User created with uid: " + firebaseUser.uid;
+				$scope.signupData.message = "User created with uid: " + firebaseUser.uid;
 				$ionicViewSwitcher.nextDirection("backward");
 				$state.go('landing');
 			}).catch(function(error) {
-				signup.error = error;
+				$scope.signupData.error = error;
 			});
 		};
 	}

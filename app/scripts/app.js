@@ -29,11 +29,13 @@ angular.module('everyquickApp', ['ionic', 'firebase'])
   $stateProvider
       .state('landing', {
         url: "/landing",
-        templateUrl: 'views/landing.html'
+        templateUrl: 'views/landing.html',
+        controller: 'LandingCtrl'
       })
       .state('signup', {
         url: "/signup",
-        templateUrl: 'views/signup.html'
+        templateUrl: 'views/signup.html',
+        controller: 'SignupCtrl'
       })
       .state('tabs', {
           url: "/tab",

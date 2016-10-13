@@ -1,25 +1,25 @@
 <ion-view title="에브리퀵">
 	<ion-content>
-	<div ng-controller="SignupCtrl as signup">
-		<form ng-submit="signup.createUser()" >
+	<div>
+		<form ng-submit="createUser()" >
 			<div class="list padding">
 			  <label class="item item-input item-stacked-label">
 			    <span class="input-label">이메일</span>
-			    <input type="text" placeholder="" ng-model="signup.email">
+			    <input type="text" placeholder="" ng-model="signupData.email">
 			  </label>
 			  <label class="item item-input item-stacked-label">
 			    <span class="input-label">비밀번호</span>
-			    <input type="password" placeholder="" ng-model="signup.password">
+			    <input type="password" placeholder="" ng-model="signupData.password">
 			  </label>
 			  <label class="item item-input item-stacked-label">
 			    <span class="input-label">이름</span>
-			    <input type="text" placeholder="" ng-model="signup.name">
+			    <input type="text" placeholder="" ng-model="signupData.name">
 			  </label>
 			  <div class="text-center">
 		        <button class="button button-block button-positive"><span class="icon ion-check-round"></span>회원가입</button>
 		      </div>
 			</div>
-			{{signup.error.message}}
+			{{signupData.error.message}}
 		</form>
 	</div>
 	</ion-content>
