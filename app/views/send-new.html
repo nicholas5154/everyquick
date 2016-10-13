@@ -1,16 +1,20 @@
 <ion-view title="에브리퀵-새로운 퀵 보내기">
 	<ion-content>
-	<div ng-controller="SendNewCtrl as send">
-		<form ng-submit="send.createUser()" >
+	<div>
+		<form ng-submit="createDelivery()" >
 			<div class="list padding">
 			  <label class="item item-input item-stacked-label">
 			    <span class="input-label">출발지</span>
-			    <input type="text" placeholder="" ng-model="send.start_addr" ng-change="send.onSearchChange()">
+			    <input type="text" placeholder="" ng-model="formData.start_addr" ng-change="onSearchChange()">
 			  </label>
 			  <div id="map" style="height:300px;"></div>
 			  <label class="item item-input item-stacked-label">
 			    <span class="input-label">도착지</span>
-			    <input type="text" placeholder="" ng-model="send.dest_addr">
+			    <input type="text" placeholder="" ng-model="formData.end_addr">
+			  </label>
+			  <label class="item item-input item-stacked-label">
+			    <span class="input-label">희망가격</span>
+			    <input type="number" placeholder="" ng-model="formData.price">
 			  </label>
 			  <div class="text-center">
 		        <button class="button button-block button-positive"><span class="icon ion-check-round"></span>등록</button>

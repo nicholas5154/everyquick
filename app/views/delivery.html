@@ -18,33 +18,13 @@
 			<div class="item item-divider">
 				추천 운송 품목
 			</div>
-			<a class="item" href="#">
+			<a class="item" href="#" ng-repeat="delivery in deliveries">
 				<div class="row">
 					<div class="col col-67 row">
-						<div class="col"><i class="icon ion-arrow-down-a"></i> 서울시 ㅇㅇ구 ㅇㅇ동 ㅇㅇ</div>
-						<div class="col"><i class="icon ion-flag"></i> 서울시 ㅇㅇ구 ㅇㅇ동 ㅇㅇ</div>
+						<div class="col"><i class="icon ion-arrow-down-a"></i> {{delivery.dep}}</div>
+						<div class="col"><i class="icon ion-flag"></i> {{delivery.dest}}</div>
 					</div>
-					<div class="col"><h1 class="title">2,500원</h1></div>
-				</div>
-				
-			</a>
-			<a class="item" href="#">
-				<div class="row">
-					<div class="col col-67 row">
-						<div class="col"><i class="icon ion-arrow-down-a"></i> 서울시 ㅇㅇ구 ㅇㅇ동 ㅇㅇ</div>
-						<div class="col"><i class="icon ion-flag"></i> 서울시 ㅇㅇ구 ㅇㅇ동 ㅇㅇ</div>
-					</div>
-					<div class="col"><h1 class="title">2,500원</h1></div>
-				</div>
-				
-			</a>
-			<a class="item" href="#">
-				<div class="row">
-					<div class="col col-67 row">
-						<div class="col"><i class="icon ion-arrow-down-a"></i> 서울시 ㅇㅇ구 ㅇㅇ동 ㅇㅇ</div>
-						<div class="col"><i class="icon ion-flag"></i> 서울시 ㅇㅇ구 ㅇㅇ동 ㅇㅇ</div>
-					</div>
-					<div class="col"><h1 class="title">2,500원</h1></div>
+					<div class="col"><h1 class="title">{{delivery.price}}원</h1></div>
 				</div>
 				
 			</a>

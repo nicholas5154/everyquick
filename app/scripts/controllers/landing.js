@@ -12,7 +12,10 @@ angular.module('everyquickApp')
 	['Auth', '$state', '$ionicViewSwitcher', 
 	function(Auth, $state, $ionicViewSwitcher) {
 		var landing = this;
-
+		var authData = Auth.$getAuth();
+		if(authData){
+			$state.go('tabs.delivery');
+		}
 		landing.login = function(){
 			firebase.auth().signInWithEmailAndPassword(landing.email, landing.password)
 			.then(function(){

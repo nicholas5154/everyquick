@@ -54,7 +54,8 @@ angular.module('everyquickApp', ['ionic', 'firebase'])
           views: {
               'send': {
                   templateUrl: 'views/send-new.html',
-                  reloadOnSearch: false
+                  reloadOnSearch: false,
+                  controller:'SendNewCtrl'
               }
           }
       })
@@ -63,7 +64,8 @@ angular.module('everyquickApp', ['ionic', 'firebase'])
           views: {
               'delivery': {
                   templateUrl: 'views/delivery.html',
-                  reloadOnSearch: false
+                  reloadOnSearch: false,
+                  controller: 'DeliveryCtrl'
               }
           }
       })

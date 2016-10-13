@@ -9,9 +9,13 @@
 */
 angular.module('everyquickApp')
 .controller('SendNewCtrl', 
-	['$scope', 
-	function($scope) {
-		var send = this;
+	['$scope', '$firebaseArray',
+	function($scope, $firebaseArray) {
+		$scope.formData = {
+			start_addr:"",
+			end_addr:"",
+			price:0,
+		};
 
 		var container = document.getElementById('map');
 		var options = {
@@ -26,9 +30,9 @@ angular.module('everyquickApp')
 			ps = new daum.maps.services.Places();
 		});
 
-		send.onSearchChange = function(){
+		$scope.onSearchChange = function(){
 			console.log("change");
-			ps.keywordSearch(send.start_addr, placesSearchCB); 
+			ps.keywordSearch($scope.formData.start_addr, placesSearchCB); 
 		}
 
 
@@ -64,6 +68,20 @@ angular.module('everyquickApp')
 		        // 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
 		        infowindow.setContent('<div style="padding:5px;font-size:12px;">' + place.title + '</div>');
 		        infowindow.open(map, marker);
+		    });
+		}
+
+		$scope.createDelivery = function(){
+		    var deliveriesRef = firebase.database().ref().child("deliveries");
+		    // download the data from a Firebase reference into a (pseudo read-only) array
+		    // all server changes are applied in realtime
+		    $scope.deliveries = $firebaseArray(deliveriesRef);
+		    // create a query for the most recent 25 deliveries on the server
+		    // the $firebaseArray service properly handles database queries as well
+		    $scope.deliveries.$add({
+		    	dep: $scope.formData.start_addr,
+		    	dest: $scope.formData.end_addr,
+		    	price: $scope.formData.price,
 		    });
 		}
 	}
