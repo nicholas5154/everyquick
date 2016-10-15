@@ -82,3 +82,7 @@ angular.module('everyquickApp', ['ionic', 'firebase'])
       });
   $urlRouterProvider.otherwise('/landing');
 })
+
+.config(function($ionicConfigProvider) {
+    $ionicConfigProvider.backButton.text('');
+});
