@@ -1,26 +1,38 @@
 <ion-view title="에브리퀵-새로운 퀵 보내기">
 	<ion-content>
-	<div>
-		<form ng-submit="createDelivery()" >
-			<div class="list padding">
-			  <label class="item item-input item-stacked-label">
-			    <span class="input-label">출발지</span>
-			    <input type="text" placeholder="" ng-model="formData.start_addr" ng-change="onSearchChange()">
-			  </label>
-			  <div id="map" style="height:300px;"></div>
-			  <label class="item item-input item-stacked-label">
-			    <span class="input-label">도착지</span>
-			    <input type="text" placeholder="" ng-model="formData.end_addr">
-			  </label>
-			  <label class="item item-input item-stacked-label">
-			    <span class="input-label">희망가격</span>
-			    <input type="number" placeholder="" ng-model="formData.price">
-			  </label>
-			  <div class="text-center">
-		        <button class="button button-block button-positive"><span class="icon ion-check-round"></span>등록</button>
-		      </div>
-			</div>
-		</form>
-	</div>
+		<div id="send-new">
+			<form ng-submit="createDelivery()" >
+				<div class="list padding">
+					<label class="item item-input item-stacked-label">
+						<span class="input-label">출발지</span>
+						<input type="text" placeholder="" ng-model="formData.dep.title" ng-change="depNameChanged()" ng-model-options="{ debounce: 250 }">
+					</label>
+					<div class="list location-list">
+						<div class="item item-button-right" ng-repeat="depLoc in formData.depList">{{depLoc.title}} <button type="button" class="button" ng-click="selectDep(depLoc)">출발</button>
+						</div>
+					</div>
+					<div id="dep_map" class="map-small"></div>
+					<label class="item item-input item-stacked-label">
+						<span class="input-label">도착지</span>
+						<input type="text" placeholder="" ng-model="formData.dest.title" ng-change="destNameChanged()" ng-model-options="{ debounce: 250 }">
+					</label>
+					<div class="list location-list">
+						<div class="item item-button-right" ng-repeat="destLoc in formData.destList">{{destLoc.title}} <button type="button" class="button" ng-click="selectDest(destLoc)">도착</button>
+						</div>
+					</div>
+					<div id="dest_map" class="map-small"></div>
+					<label class="item item-input item-stacked-label">
+						<span class="input-label">희망가격</span>
+						<input type="number" ng-model="formData.price" name="volume" min="1000" max="15000" step="1000">
+					</label>
+					<div class="item range" data-tap-disabled="true">
+						<input type="range" ng-model="formData.price" name="volume" min="1000" max="15000" step="1000" ng-change="onPriceSliderChange()">
+					</div>
+					<div class="text-center">
+						<button class="button button-block button-positive"><span class="icon ion-check-round"></span>등록</button>
+					</div>
+				</div>
+			</form>
+		</div>
 	</ion-content>
 </ion-view>

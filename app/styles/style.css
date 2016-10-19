@@ -41,3 +41,11 @@
 #relative{
 	position:relative;
 }
+
+#send-new .map-small{
+	height: 200px;
+}
+
+#send-new .location-list{
+	margin-bottom: 0px;
+}
