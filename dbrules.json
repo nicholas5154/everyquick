@@ -1,0 +1,12 @@
+{
+  "rules": {
+    ".read": "auth != null",
+    //".write": "auth != null",
+    "deliveries": {
+      "$delivery_id": {
+        // write access only to your own data
+        ".write": "newData.child('sender').val() === auth.uid",
+      }
+    }
+  }
+}
