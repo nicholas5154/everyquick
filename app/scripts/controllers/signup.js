@@ -16,8 +16,8 @@ angular.module('everyquickApp')
 			// Create a new user
 			Auth.$createUserWithEmailAndPassword($scope.signupData.email, $scope.signupData.password)
 			.then(function(firebaseUser) {
-				$scope.signupData.message = "User created with uid: " + firebaseUser.uid;
-				$ionicViewSwitcher.nextDirection("backward");
+				$scope.signupData.message = 'User created with uid: ' + firebaseUser.uid;
+				$ionicViewSwitcher.nextDirection('backward');
 				$state.go('landing');
 			}).catch(function(error) {
 				$scope.signupData.error = error;

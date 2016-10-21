@@ -12,8 +12,8 @@ angular.module('everyquickApp')
 	['$scope', 'Auth', '$state', '$ionicViewSwitcher', 
 	function($scope, Auth, $state, $ionicViewSwitcher) {
 		$scope.loginData = {
-			email: "",
-			password: ""
+			email: '',
+			password: ''
 		};
 		var authData = Auth.$getAuth();
 		if(authData){
@@ -22,7 +22,7 @@ angular.module('everyquickApp')
 		$scope.login = function(){
 			firebase.auth().signInWithEmailAndPassword($scope.loginData.email, $scope.loginData.password)
 			.then(function(){
-				$ionicViewSwitcher.nextDirection("forward");
+				$ionicViewSwitcher.nextDirection('forward');
 				$state.go('tabs.delivery');
 			})
 			.catch(function(error) {
@@ -32,6 +32,6 @@ angular.module('everyquickApp')
 				$scope.errorMessage = error.message;
 			// ...
 			});
-		}
+		};
 	}
 ]);

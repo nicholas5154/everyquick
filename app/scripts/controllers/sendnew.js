@@ -44,13 +44,17 @@ angular.module('everyquickApp')
 		});
 
 		$scope.depNameChanged = function(){
-			if($scope.formData.dep.title.length == 0) return;
-			places.keywordSearch($scope.formData.dep.title, depResult)
+			if($scope.formData.dep.title.length === 0) {
+				return;
+			}
+			places.keywordSearch($scope.formData.dep.title, depResult);
 		};
 
 		$scope.destNameChanged = function(){
-			if($scope.formData.dest.title.length == 0) return;
-			places.keywordSearch($scope.formData.dest.title, destResult)
+			if($scope.formData.dest.title.length === 0) {
+				return;
+			}
+			places.keywordSearch($scope.formData.dest.title, destResult);
 		};
 
 		function depResult (status, data, pagination) {
@@ -75,7 +79,7 @@ angular.module('everyquickApp')
 					depObj.longitude
 					)
 				);
-			displayMarker(depObj, depMarker, depMap);
+			displayMarker(depObj, depMarker);
 		};
 
 		$scope.selectDest = function(destObj){
@@ -87,10 +91,10 @@ angular.module('everyquickApp')
 					destObj.longitude
 					)
 				);
-			displayMarker(destObj, destMarker, destMap);
+			displayMarker(destObj, destMarker);
 		};
 
-		function displayMarker(place, marker, map) {
+		function displayMarker(place, marker) {
 			// 마커를 생성하고 지도에 표시합니다
 			marker.setPosition(
 				new daum.maps.LatLng(place.latitude, place.longitude)
@@ -102,7 +106,7 @@ angular.module('everyquickApp')
 		};
 
 		$scope.createDelivery = function(){
-			var deliveriesRef = firebase.database().ref().child("deliveries");
+			var deliveriesRef = firebase.database().ref().child('deliveries');
 			// download the data from a Firebase reference into a (pseudo read-only) array
 			// all server changes are applied in realtime
 			$scope.deliveries = $firebaseArray(deliveriesRef);
