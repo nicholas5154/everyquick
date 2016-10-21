@@ -8,8 +8,12 @@
  * Factory in the everyquickApp.
  */
 angular.module('everyquickApp')
-.factory('Auth', ['$firebaseAuth',
-	function($firebaseAuth) {
-		return $firebaseAuth();
+.factory('Auth', ['$firebaseAuth', 'Profile',
+	function($firebaseAuth, Profile) {
+		var auth = $firebaseAuth();
+		auth.$onAuthStateChanged(function(firebaseUser) {
+			auth.profile = Profile(firebaseUser.uid);
+		});
+		return auth;
 	}
 ]);

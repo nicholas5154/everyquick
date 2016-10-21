@@ -48,48 +48,22 @@
 			"carrier":null
 		}
 	},
-	"carrier_deps":{
-		"dep_geofire_key":{
-			"route":null,
-			"type":"dep",
-			"carrier_dest":"dest_geofire_key",
-			"depLang": 0.8123,
-			"depLat": 0.15323,
-			"destLang": 0.12312,
-			"destLat": 0.12312
-		}
-	},
-	"carrier_dests":{
-		"dest_geofire_key":{
-			"route":null,
-			"type":"dest",
-			"carrier_dep":"dep_geofire_key",
-			"depLang": 0.8123,
-			"depLat": 0.15323,
-			"destLang": 0.12312,
-			"destLat": 0.12312
-		}
-	},
-	"delivery_deps":{
-		"dep_geofire_key":{
-			"delivery":null,
-			"type":"dep",
-			"delivery_dest":"dest_geofire_key",
-			"depLang": 0.8123,
-			"depLat": 0.15323,
-			"destLang": 0.12312,
-			"destLat": 0.12312
-		}
-	},
-	"delivery_dests":{
-		"dest_geofire_key":{
-			"delivery":null,
-			"type":"dest",
-			"delivery_dep":"dep_geofire_key",
-			"depLang": 0.8123,
-			"depLat": 0.15323,
-			"destLang": 0.12312,
-			"destLat": 0.12312
+	"geofire":{
+		"carrier_deps":{
+			"route_id":{
+			}
+		},
+		"carrier_dests":{
+			"route_id":{
+			}
+		},
+		"delivery_deps":{
+			"delivery_id":{
+			}
+		},
+		"delivery_dests":{
+			"delivery_id":{
+			}
 		}
 	},
 	"user_info":{
