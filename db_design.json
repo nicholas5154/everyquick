@@ -1,103 +1,115 @@
 {
-   "deliveries":{
-      "delivery_id":{
-         "description": "desc",
-         "img_url": "http://imageURL",
-         "dimensions": "30cm 30cm 50cm",
-         "weight": "~15kg",
-         "dep": null,
-         "dep_address": "서울 ㅇㅇ구 ㅇㅇ동 ㅇㅇ",
-         "dep_name": "서강대학교",
-         "dest": null,
-         "dest_address": "서울 ㅇㅇ구 ㅇㅇ동 ㅇㅇ",
-         "dest_name": "서강대학교",
-         "sender": null,
-         "carrier": null,
-         "receiver": {
-            "type": "appUser",
-            "id": "sdsdf",
-            "name": "ussdf",
-            "phone": "010-1234-5678"
-         },
-         "datetime":"timestamp",
-         "log":{
-            "delivery_id":[
-               {
-                  "type":"pickedUp",
-                  "datetime":"timestamp",
-                  "note":""
-               }
-            ]
-         }
-      }
-   },
-   "routes":{
-      "route_id":{
-         "carrier":null
-      }
-   },
-   "carrier_deps":{
-      "dep_geofire_key":{
-         "route":null,
-         "type":"dep",
-         "carrier_dest":"dest_geofire_key",
-         "depLang": 0.8123,
-         "depLat": 0.15323,
-         "destLang": 0.12312,
-         "destLat": 0.12312
-      }
-   },
-   "carrier_dests":{
-      "dest_geofire_key":{
-         "route":null,
-         "type":"dest",
-         "carrier_dep":"dep_geofire_key",
-         "depLang": 0.8123,
-         "depLat": 0.15323,
-         "destLang": 0.12312,
-         "destLat": 0.12312
-      }
-   },
-   "delivery_deps":{
-      "dep_geofire_key":{
-         "delivery":null,
-         "type":"dep",
-         "delivery_dest":"dest_geofire_key",
-         "depLang": 0.8123,
-         "depLat": 0.15323,
-         "destLang": 0.12312,
-         "destLat": 0.12312
-      }
-   },
-   "delivery_dests":{
-      "dest_geofire_key":{
-         "delivery":null,
-         "type":"dest",
-         "delivery_dep":"dep_geofire_key",
-         "depLang": 0.8123,
-         "depLat": 0.15323,
-         "destLang": 0.12312,
-         "destLat": 0.12312
-      }
-   },
-   "user_info":{
-      "user_uid":{
-         "name":"가나다",
-         "name_verified":true,
-         "num_carried": 2,
-         "carrier_auth":true,
-         "carrier_info":{
-            "phone":"010-1234-5678",
-            "repuation":3.2
-         },
-         "routes":[
-            "route_id_0",
-            "route_id_1"
-         ],
-         "sent_deliveries":[
-         ],
-         "carried_deliveries":[
-         ]
-      }
-   }
+	"deliveries":{
+		"delivery_id":{
+			"description": "desc",
+			"img_url": "http://imageURL",
+			"dimensions": "30cm 30cm 50cm",
+			"weight": "~15kg",
+			"dep": {
+				"id":"",
+				"title":"",
+				"zipcode":"",
+				"address":"",
+				"newAddress":"",
+				"latitude":"",
+				"longitude":""
+			},
+			"dest": {
+				"id":"",
+				"title":"",
+				"zipcode":"",
+				"address":"",
+				"newAddress":"",
+				"latitude":"",
+				"longitude":""
+			},
+			"sender": null,
+			"carrier": null,
+			"receiver": {
+				"type": "appUser",
+				"id": "sdsdf",
+				"name": "ussdf",
+				"phone": "010-1234-5678"
+			},
+			"datetime":"timestamp",
+			"log":{
+				"delivery_id":[
+					{
+						"type":"pickedUp",
+						"datetime":"timestamp",
+						"note":""
+					}
+				]
+			}
+		}
+	},
+	"routes":{
+		"route_id":{
+			"carrier":null
+		}
+	},
+	"carrier_deps":{
+		"dep_geofire_key":{
+			"route":null,
+			"type":"dep",
+			"carrier_dest":"dest_geofire_key",
+			"depLang": 0.8123,
+			"depLat": 0.15323,
+			"destLang": 0.12312,
+			"destLat": 0.12312
+		}
+	},
+	"carrier_dests":{
+		"dest_geofire_key":{
+			"route":null,
+			"type":"dest",
+			"carrier_dep":"dep_geofire_key",
+			"depLang": 0.8123,
+			"depLat": 0.15323,
+			"destLang": 0.12312,
+			"destLat": 0.12312
+		}
+	},
+	"delivery_deps":{
+		"dep_geofire_key":{
+			"delivery":null,
+			"type":"dep",
+			"delivery_dest":"dest_geofire_key",
+			"depLang": 0.8123,
+			"depLat": 0.15323,
+			"destLang": 0.12312,
+			"destLat": 0.12312
+		}
+	},
+	"delivery_dests":{
+		"dest_geofire_key":{
+			"delivery":null,
+			"type":"dest",
+			"delivery_dep":"dep_geofire_key",
+			"depLang": 0.8123,
+			"depLat": 0.15323,
+			"destLang": 0.12312,
+			"destLat": 0.12312
+		}
+	},
+	"user_info":{
+		"user_uid":{
+			"name":"가나다",
+			"name_verified":true,
+			"num_carried": 2,
+			"carrier_auth":true,
+			"carrier_info":{
+				"phone":"010-1234-5678",
+				"repuation":3.2
+			},
+			"routes":[
+				"route_id_0",
+				"route_id_1"
+			],
+			"sent_deliveries":[
+			],
+			"carried_deliveries":[
+			]
+		}
+	}
 }
