@@ -9,8 +9,8 @@
 */
 angular.module('everyquickApp')
 .controller('SendNewCtrl', 
-	['$scope', '$firebaseArray', 'Auth', 
-	function($scope, $firebaseArray, Auth) {
+	['$scope', 'Delivery',
+	function($scope, Delivery) {
 		$scope.formData = {
 			dep:{},
 			dest:{},
@@ -106,35 +106,25 @@ angular.module('everyquickApp')
 		};
 
 		$scope.createDelivery = function(){
-			var deliveriesRef = firebase.database().ref().child('deliveries');
-			// download the data from a Firebase reference into a (pseudo read-only) array
-			// all server changes are applied in realtime
-			$scope.deliveries = $firebaseArray(deliveriesRef);
-			// create a query for the most recent 25 deliveries on the server
-			// the $firebaseArray service properly handles database queries as well
-			$scope.deliveries.$add({
-				sender: Auth.$getAuth().uid,
-				dep: {
-					id: $scope.formData.dep.id,
-					title: $scope.formData.dep.title,
-					zipcode: $scope.formData.dep.zipcode,
-					address: $scope.formData.dep.address,
-					newAddress: $scope.formData.dep.newAddress,
-					latitude: $scope.formData.dep.latitude,
-					longitude: $scope.formData.dep.longitude
-				},
-				dest: {
-					id: $scope.formData.dest.id,
-					title: $scope.formData.dest.title,
-					zipcode: $scope.formData.dest.zipcode,
-					address: $scope.formData.dest.address,
-					newAddress: $scope.formData.dest.newAddress,
-					latitude: $scope.formData.dest.latitude,
-					longitude: $scope.formData.dest.longitude
-				},
-				price: $scope.formData.price,
-				posted: firebase.database.ServerValue.TIMESTAMP
-			});
+			var dep = {
+				id: $scope.formData.dep.id,
+				title: $scope.formData.dep.title,
+				zipcode: $scope.formData.dep.zipcode,
+				address: $scope.formData.dep.address,
+				newAddress: $scope.formData.dep.newAddress,
+				latitude: $scope.formData.dep.latitude,
+				longitude: $scope.formData.dep.longitude
+			};
+			var dest = {
+				id: $scope.formData.dest.id,
+				title: $scope.formData.dest.title,
+				zipcode: $scope.formData.dest.zipcode,
+				address: $scope.formData.dest.address,
+				newAddress: $scope.formData.dest.newAddress,
+				latitude: $scope.formData.dest.latitude,
+				longitude: $scope.formData.dest.longitude
+			};
+			Delivery.post(dep, dest, $scope.formData.price);
 		};
 
 	}]

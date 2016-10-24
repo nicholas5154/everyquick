@@ -21,6 +21,9 @@
   "globals": {
     "angular": false,
     "cordova": false,
-    "StatusBar": false
+    "StatusBar": false,
+    "firebase": false,
+    "GeoFire": false,
+    "daum": false
   }
 }

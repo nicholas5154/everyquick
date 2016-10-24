@@ -12,11 +12,11 @@ angular.module('everyquickApp')
 	function ($firebaseObject) {
 		return function(username) {
 			// create a reference to the database node where we will store our data
-			var ref = firebase.database().ref("userData");
+			var ref = firebase.database().ref('userData');
 			var profileRef = ref.child(username);
 
 			// return it as a synchronized object
 			return $firebaseObject(profileRef);
-		}
+		};
 	}
 ]);
