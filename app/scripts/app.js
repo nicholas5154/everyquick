@@ -79,6 +79,7 @@ angular.module('everyquickApp', ['ionic', 'firebase'])
 		views: {
 			'mypage': {
 				templateUrl: 'views/mypage.html',
+				controller: 'MypageCtrl',
 				reloadOnSearch: false
 			}
 		}

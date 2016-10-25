@@ -1,1 +1,18 @@
-<p>This is the mypage view.</p>
+<ion-view title="에브리퀵-마이페이지">
+	<ion-content>
+		<div class="list">
+			<div class="item item-divider">
+				내 정보
+			</div>
+			<a class="item" href="#">
+				이메일: {{auth.email}}
+			</a>
+			<a class="item" href="#">
+				이름: {{profile.name}}
+			</a>
+			<a class="item" href="#">
+				가입일자: {{profile.joinDate}}
+			</a>
+		</div>
+	</ion-content>
+</ion-view>
