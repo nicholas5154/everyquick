@@ -8,8 +8,8 @@
  * Factory in the everyquickApp.
  */
 angular.module('everyquickApp')
-.factory('Delivery', ['$firebaseArray', 'Auth',
-	function ($firebaseArray, Auth) {
+.factory('Delivery', ['$firebaseArray', '$firebaseObject', 'Auth',
+	function ($firebaseArray, $firebaseObject, Auth) {
 		var deliveriesRef = firebase.database().ref().child('deliveries');
 		var deliveries = $firebaseArray(deliveriesRef);
 
@@ -30,11 +30,18 @@ angular.module('everyquickApp')
 		};
 
 		var fetch = function(deliveryId){
-			return deliveries.$getRecord(deliveryId);
+			return $firebaseObject(deliveriesRef.child(deliveryId));
+		};
+
+		var getSent = function(){
+			var sentRef = Auth.profile.$ref().child('sentDeliveries');
+			return $firebaseArray(sentRef);
 		};
 
 		return {
 			post: post,
+			fetch: fetch,
+			getSent: getSent
 		};
 	}
 ]);

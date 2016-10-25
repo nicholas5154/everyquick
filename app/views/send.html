@@ -5,13 +5,13 @@
 			<div class="item item-divider">
 				내가 보낸 퀵
 			</div>
-			<a class="item" href="#">
+			<a class="item" href="#" ng-repeat="sentDelivery in sentDeliveries">
 				<div class="row">
-				  <div class="col col-67"><i class="icon ion-arrow-down-a"></i> 서울시 ㅇㅇ구 ㅇㅇ동 ㅇㅇ</div>
+				  <div class="col col-67"><i class="icon ion-arrow-down-a"></i> {{sentDelivery.dep.title}}</div>
 				  <div class="col"><span class="badge badge-assertive">픽업 대기중</span></div>
 				</div>
 				<div class="row">
-				  <div class="col col-67"><i class="icon ion-flag"></i> 서울시 ㅇㅇ구 ㅇㅇ동 ㅇㅇ</div>
+				  <div class="col col-67"><i class="icon ion-flag"></i> {{sentDelivery.dest.title}}</div>
 				  <div class="col">2014-01-24:00기준</div>
 				</div>
 			</a>

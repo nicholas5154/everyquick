@@ -12,7 +12,8 @@ angular.module('everyquickApp')
 	function($firebaseAuth, Profile) {
 		var auth = $firebaseAuth();
 		auth.$onAuthStateChanged(function(firebaseUser) {
-			auth.profile = Profile(firebaseUser.uid);
+			if(firebaseUser)
+				auth.profile = Profile(firebaseUser.uid);
 		});
 		return auth;
 	}

@@ -49,6 +49,7 @@ angular.module('everyquickApp', ['ionic', 'firebase'])
 		views: {
 			'send': {
 				templateUrl: 'views/send.html',
+				controller: 'SendCtrl',
 				reloadOnSearch: false
 			}
 		}
