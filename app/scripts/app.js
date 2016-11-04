@@ -74,6 +74,19 @@ angular.module('everyquickApp', ['ionic', 'firebase'])
 			}
 		}
 	})
+	.state('tabs.delivery-detail', {
+		url: '/delivery/:id',
+		params: {
+            id: null
+        },
+		views: {
+			'delivery': {
+				templateUrl: 'views/delivery-detail.html',
+				reloadOnSearch: false,
+				controller: 'DeliveryDetailCtrl'
+			}
+		}
+	})
 	.state('tabs.mypage', {
 		url: '/mypage',
 		views: {
