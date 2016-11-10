@@ -8,98 +8,138 @@
 angular.module('everyquickApp', ['ionic', 'firebase'])
 
 .run(function($ionicPlatform) {
-	$ionicPlatform.ready(function() {
-		if(window.cordova && window.cordova.plugins.Keyboard) {
-			// Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-			// for form inputs)
-			cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+   $ionicPlatform.ready(function() {
+      if(window.cordova && window.cordova.plugins.Keyboard) {
+         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
+         // for form inputs)
+         cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
 
-			// Don't remove this line unless you know what you are doing. It stops the viewport
-			// from snapping when text inputs are focused. Ionic handles this internally for
-			// a much nicer keyboard experience.
-			cordova.plugins.Keyboard.disableScroll(true);
-		}
-		if(window.StatusBar) {
-			StatusBar.styleDefault();
-		}
-	});
+         // Don't remove this line unless you know what you are doing. It stops the viewport
+         // from snapping when text inputs are focused. Ionic handles this internally for
+         // a much nicer keyboard experience.
+         cordova.plugins.Keyboard.disableScroll(true);
+      }
+      if(window.StatusBar) {
+         StatusBar.styleDefault();
+      }
+   });
 })
 
 //TODO: routing based on authentication
 //https://github.com/firebase/angularfire/blob/master/docs/guide/user-auth.md#authenticating-with-routers
 .config(function($stateProvider, $urlRouterProvider) {
-	$stateProvider
-	.state('landing', {
-		url: '/landing',
-		templateUrl: 'views/landing.html',
-		controller: 'LandingCtrl'
-	})
-	.state('signup', {
-		url: '/signup',
-		templateUrl: 'views/signup.html',
-		controller: 'SignupCtrl'
-	})
-	.state('tabs', {
-		url: '/tab',
-		abstract: true,
-		templateUrl: 'views/tabs.html'
-	})
-	.state('tabs.send', {
-		url: '/send',
-		views: {
-			'send': {
-				templateUrl: 'views/send.html',
-				controller: 'SendCtrl',
-				reloadOnSearch: false
-			}
-		}
-	})
-	.state('tabs.send-new', {
-		url: '/send-new',
-		views: {
-			'send': {
-				templateUrl: 'views/send-new.html',
-				reloadOnSearch: false,
-				controller:'SendNewCtrl'
-			}
-		}
-	})
-	.state('tabs.delivery', {
-		url: '/delivery',
-		views: {
-			'delivery': {
-				templateUrl: 'views/delivery.html',
-				reloadOnSearch: false,
-				controller: 'DeliveryCtrl'
-			}
-		}
-	})
-	.state('tabs.delivery-detail', {
-		url: '/delivery/:id',
-		params: {
-            id: null
+   $stateProvider
+   .state('landing', {
+      url: '/landing',
+      templateUrl: 'views/landing.html',
+      controller: 'LandingCtrl'
+   })
+    .state('login', {
+        url: '/login',
+        templateUrl: 'views/login.html',
+        controller: 'LoginCtrl'
+    })
+   .state('signup', {
+      url: '/signup',
+      templateUrl: 'views/signup.html',
+      controller: 'SignupCtrl'
+   })
+    .state('send', {
+        url: '/send',
+        abstract: true,
+        templateUrl: 'views/send.html'
+    })
+    .state('send.home', {
+        url: '/',
+        views: {
+            'send': {
+                templateUrl: 'views/send-home.html',
+                controller: 'SendCtrl'
+            }
+        }
+    })
+    .state('send.new', {
+        url: '/new',
+        views: {
+            'send': {
+                templateUrl: 'views/send-new.html',
+                controller: 'SendNewCtrl'
+            }
+        }
+    })
+    .state('send.detail', {
+        url: '/send/detail/:id',
+        params: {
+            id: null,
+            mode: 'send'
         },
-		views: {
-			'delivery': {
-				templateUrl: 'views/delivery-detail.html',
-				reloadOnSearch: false,
-				controller: 'DeliveryDetailCtrl'
-			}
-		}
-	})
-	.state('tabs.mypage', {
-		url: '/mypage',
-		views: {
-			'mypage': {
-				templateUrl: 'views/mypage.html',
-				controller: 'MypageCtrl',
-				reloadOnSearch: false
-			}
-		}
-	});
-	$urlRouterProvider.otherwise('/landing');
+        views: {
+            'send': {
+                templateUrl: 'views/delivery-detail.html',
+                controller: 'DeliveryDetailCtrl'
+            }
+        }
+    })
+    .state('delivery', {
+        url: '/delivery',
+        abstract: true,
+        templateUrl: 'views/delivery.html'
+    })
+   .state('delivery.my', {
+      url: '/my',
+      views: {
+         'delivery-my': {
+            templateUrl: 'views/delivery-home.html',
+            reloadOnSearch: false,
+            controller: 'DeliveryCtrl'
+         }
+      }
+   })
+    .state('delivery.my-detail', {
+        url: '/my/:id',
+        params: {
+            id: null,
+            mode: 'delivery-my'
+        },
+        views: {
+            'delivery-my': {
+                templateUrl: 'views/delivery-detail.html',
+                controller: 'DeliveryDetailCtrl'
+            }
+        }
+    })
+    .state('delivery.explore', {
+        url: '/explore',
+        views: {
+            'delivery-explore': {
+                templateUrl: 'views/delivery-explore.html',
+                controller: 'DeliveryExploreCtrl'
+            }
+        }
+    })
+   .state('delivery.explore-detail', {
+      url: '/explore/:id',
+      params: {
+            id: null,
+            mode: 'delivery-explore'
+        },
+      views: {
+         'delivery-explore': {
+            templateUrl: 'views/delivery-detail.html',
+            reloadOnSearch: false,
+            controller: 'DeliveryDetailCtrl'
+         }
+      }
+   })
+   .state('mypage', {
+      url: '/mypage',
+      templateUrl: 'views/mypage.html',
+      controller: 'MypageCtrl',
+      reloadOnSearch: false
+   });
+   $urlRouterProvider.otherwise('/landing');
 })
 
 .config(function($ionicConfigProvider) {
-	$ionicConfigProvider.backButton.text('');
+   $ionicConfigProvider.backButton.text('');
 });

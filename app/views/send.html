@@ -1,24 +1,13 @@
-<ion-view title="에브리퀵-퀵 보내기">
-	<ion-content>
-		
-		<div class="list">
-			<div class="item item-divider">
-				내가 보낸 퀵
-			</div>
-			<a class="item" href="#" ng-repeat="sentDelivery in sentDeliveries">
-				<div class="row">
-				  <div class="col col-67"><i class="icon ion-arrow-down-a"></i> {{sentDelivery.dep.title}}</div>
-				  <div class="col"><span class="badge badge-assertive">픽업 대기중</span></div>
-				</div>
-				<div class="row">
-				  <div class="col col-67"><i class="icon ion-flag"></i> {{sentDelivery.dest.title}}</div>
-				  <div class="col">2014-01-24:00기준</div>
-				</div>
-			</a>
-		</div>
-		
-	</ion-content>
-	<ion-footer-bar class="bar-assertive" ui-sref="tabs.send-new">
-		<h1 class="title"><div class="ion ion-plus"></div> 새로운 퀵 보내기</h1>
-	</ion-footer-bar>
-</ion-view>
+<ion-tabs class="tabs-icon-top tabs-light">
+
+<ion-tab title="내가 보낸 퀵" icon="ion-flash" ui-sref="send.home">
+    <ion-nav-view name="send"></ion-nav-view>
+</ion-tab>
+
+<ion-tab title="기록" icon="ion-clock" ui-sref="send.home">
+    <ion-nav-view name="send-history"></ion-nav-view>
+</ion-tab>
+
+</ion-tabs>
+
+

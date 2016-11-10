@@ -1,0 +1,18 @@
+<ion-view title="에브리퀵-운송하기">
+	<ion-content>
+		<div class="list">
+			<div class="item item-divider">
+				추천 운송 품목
+			</div>
+			<a class="item" ui-sref="tabs.delivery-detail({id: delivery.$id})" ng-repeat="delivery in deliveries">
+				<div class="row">
+					<div class="col col-67 row">
+						<div class="col"><i class="icon ion-arrow-down-a"></i> {{delivery.dep.title}}</div>
+						<div class="col"><i class="icon ion-flag"></i> {{delivery.dest.title}}</div>
+					</div>
+					<div class="col"><h1 class="title">{{delivery.price}}원</h1></div>
+				</div>
+			</a>
+		</div>
+	</ion-content>
+</ion-view>

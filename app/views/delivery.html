@@ -1,33 +1,11 @@
-<ion-view title="에브리퀵-운송하기">
-	<ion-content>
-		
-		<div class="list">
-			<div class="item item-divider">
-				내가 운송중인 품목
-			</div>
-			<a class="item" href="#">
-				<div class="row">
-					<div class="col col-67"><i class="icon ion-arrow-down-a"></i> 서울시 ㅇㅇ구 ㅇㅇ동 ㅇㅇ</div>
-					<div class="col"><span class="badge badge-assertive">픽업 대기중</span></div>
-				</div>
-				<div class="row">
-					<div class="col col-67"><i class="icon ion-flag"></i> 서울시 ㅇㅇ구 ㅇㅇ동 ㅇㅇ</div>
-					<div class="col">2014-01-24:00기준</div>
-				</div>
-			</a>
-			<div class="item item-divider">
-				추천 운송 품목
-			</div>
-			<a class="item" ui-sref="tabs.delivery-detail({id: delivery.$id})" ng-repeat="delivery in deliveries">
-				<div class="row">
-					<div class="col col-67 row">
-						<div class="col"><i class="icon ion-arrow-down-a"></i> {{delivery.dep.title}}</div>
-						<div class="col"><i class="icon ion-flag"></i> {{delivery.dest.title}}</div>
-					</div>
-					<div class="col"><h1 class="title">{{delivery.price}}원</h1></div>
-				</div>
-			</a>
-		</div>
-		
-	</ion-content>
-</ion-view>
+<ion-tabs class="tabs-icon-top tabs-light">
+
+<ion-tab title="탐색" icon="ion-flash" ui-sref="delivery.explore">
+  <ion-nav-view name="delivery-explore"></ion-nav-view>
+</ion-tab>
+
+<ion-tab title="나의 운송" icon="ion-person" ui-sref="delivery.my">
+  <ion-nav-view name="delivery-my"></ion-nav-view>
+</ion-tab>
+
+</ion-tabs>
