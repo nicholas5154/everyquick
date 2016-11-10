@@ -61,23 +61,23 @@ module.exports = function (grunt) {
     watch: {
       bower: {
         files: ['bower.json'],
-        tasks: ['wiredep', 'newer:copy:app']
+        tasks: ['wiredep', 'sync:app']
       },
       html: {
         files: ['<%= yeoman.app %>/**/*.html'],
-        tasks: ['newer:copy:app']
+        tasks: ['sync:app']
       },
       js: {
         files: ['<%= yeoman.app %>/<%= yeoman.scripts %>/**/*.js'],
-        tasks: ['newer:copy:app', 'newer:jshint:all']
+        tasks: ['sync:app', 'newer:jshint:all']
       },
       styles: {
         files: ['<%= yeoman.app %>/<%= yeoman.styles %>/**/*.css'],
-        tasks: ['newer:copy:styles', 'autoprefixer', 'newer:copy:tmp']
+        tasks: ['sync:styles', 'autoprefixer', 'sync:tmp']
       },
       gruntfile: {
         files: ['Gruntfile.js'],
-        tasks: ['ngconstant:development', 'newer:copy:app']
+        tasks: ['ngconstant:development', 'sync:app']
       }
     },
 
@@ -213,7 +213,7 @@ module.exports = function (grunt) {
     },
 
     // Copies remaining files to places other tasks can use
-    copy: {
+    sync: {
       dist: {
         files: [{
           expand: true,
@@ -276,19 +276,19 @@ module.exports = function (grunt) {
         }
       },
       server: [
-        'copy:styles',
-        'copy:vendor',
-        'copy:fonts'
+        'sync:styles',
+        'sync:vendor',
+        'sync:fonts'
       ],
       test: [
-        'copy:styles',
-        'copy:vendor',
-        'copy:fonts'
+        'sync:styles',
+        'sync:vendor',
+        'sync:fonts'
       ],
       dist: [
-        'copy:styles',
-        'copy:vendor',
-        'copy:fonts'
+        'sync:styles',
+        'sync:vendor',
+        'sync:fonts'
       ]
     },
 
@@ -405,16 +405,16 @@ module.exports = function (grunt) {
   });
 
   // Since Apache Ripple serves assets directly out of their respective platform
-  // directories, we watch all registered files and then copy all un-built assets
+  // directories, we watch all registered files and then sync all un-built assets
   // over to <%= yeoman.dist %>/. Last step is running cordova prepare so we can refresh the ripple
   // browser tab to see the changes. Technically ripple runs `cordova prepare` on browser
   // refreshes, but at this time you would need to re-run the emulator to see changes.
-  grunt.registerTask('ripple', ['wiredep', 'newer:copy:app', 'ripple-emulator']);
+  grunt.registerTask('ripple', ['wiredep', 'sync:app', 'ripple-emulator']);
   grunt.registerTask('ripple-emulator', function () {
     grunt.config.set('watch', {
       all: {
         files: _.flatten(_.pluck(grunt.config.get('watch'), 'files')),
-        tasks: ['newer:copy:app', 'prepare']
+        tasks: ['sync:app', 'prepare']
       }
     });
 
@@ -495,8 +495,8 @@ module.exports = function (grunt) {
     'wiredep',
     'concurrent:server',
     'autoprefixer',
-    'newer:copy:app',
-    'newer:copy:tmp'
+    'sync:app',
+    'sync:tmp'
   ]);
 
 
@@ -509,7 +509,7 @@ module.exports = function (grunt) {
     'autoprefixer',
     'concat',
     'ngAnnotate',
-    'copy:dist',
+    'sync:dist',
     'cssmin',
     'uglify',
     'usemin',
