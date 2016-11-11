@@ -9,21 +9,16 @@
  */
 angular.module('everyquickApp')
 .controller('LoginCtrl', 
-	['$scope', 'Auth', '$state', '$ionicViewSwitcher', 
-	function($scope, Auth, $state, $ionicViewSwitcher) {
+	['$scope', 'Auth', '$state', '$stateParams', '$ionicHistory', 
+	function($scope, Auth, $state, $stateParams, $ionicHistory) {
 		$scope.loginData = {
 			email: '',
 			password: ''
 		};
-		var authData = Auth.$getAuth();
-		if(authData){
-			$state.go('tabs.delivery');
-		}
 		$scope.login = function(){
 			firebase.auth().signInWithEmailAndPassword($scope.loginData.email, $scope.loginData.password)
 			.then(function(){
-				$ionicViewSwitcher.nextDirection('forward');
-				$state.go('tabs.delivery');
+	       		$state.go($stateParams.callback);
 			})
 			.catch(function(error) {
 				// Handle Errors here.

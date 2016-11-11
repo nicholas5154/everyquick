@@ -7,7 +7,7 @@
 // the 2nd parameter is an array of 'requires'
 angular.module('everyquickApp', ['ionic', 'firebase'])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, $rootScope, $state, Auth) {
    $ionicPlatform.ready(function() {
       if(window.cordova && window.cordova.plugins.Keyboard) {
          // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -23,6 +23,14 @@ angular.module('everyquickApp', ['ionic', 'firebase'])
          StatusBar.styleDefault();
       }
    });
+   $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
+    var authData = Auth.$getAuth();
+    if (toState.authRequired && !authData){
+      // User isn’t authRequiredd
+      $state.go('login', {callback: toState.name});
+      event.preventDefault(); 
+    }
+  });
 })
 
 //TODO: routing based on authentication
@@ -32,31 +40,39 @@ angular.module('everyquickApp', ['ionic', 'firebase'])
    .state('landing', {
       url: '/landing',
       templateUrl: 'views/landing.html',
-      controller: 'LandingCtrl'
+      controller: 'LandingCtrl',
+      authRequired: false
    })
     .state('login', {
         url: '/login',
         templateUrl: 'views/login.html',
-        controller: 'LoginCtrl'
+        controller: 'LoginCtrl',
+        authRequired: false,
+        params: {
+            callback: null,
+        }
     })
-   .state('signup', {
-      url: '/signup',
-      templateUrl: 'views/signup.html',
-      controller: 'SignupCtrl'
+    .state('signup', {
+        url: '/signup',
+        templateUrl: 'views/signup.html',
+        controller: 'SignupCtrl',
+        authRequired: false
    })
     .state('send', {
         url: '/send',
         abstract: true,
-        templateUrl: 'views/send.html'
+        templateUrl: 'views/send.html',
+        authRequired: true
     })
     .state('send.home', {
-        url: '/',
+        url: '/home',
         views: {
             'send': {
                 templateUrl: 'views/send-home.html',
                 controller: 'SendCtrl'
             }
-        }
+        },
+        authRequired: true
     })
     .state('send.new', {
         url: '/new',
@@ -65,7 +81,8 @@ angular.module('everyquickApp', ['ionic', 'firebase'])
                 templateUrl: 'views/send-new.html',
                 controller: 'SendNewCtrl'
             }
-        }
+        },
+        authRequired: true
     })
     .state('send.detail', {
         url: '/send/detail/:id',
@@ -78,7 +95,8 @@ angular.module('everyquickApp', ['ionic', 'firebase'])
                 templateUrl: 'views/delivery-detail.html',
                 controller: 'DeliveryDetailCtrl'
             }
-        }
+        },
+        authRequired: true
     })
     .state('delivery', {
         url: '/delivery',
@@ -93,7 +111,8 @@ angular.module('everyquickApp', ['ionic', 'firebase'])
             reloadOnSearch: false,
             controller: 'DeliveryCtrl'
          }
-      }
+      },
+      authRequired: true
    })
     .state('delivery.my-detail', {
         url: '/my/:id',
@@ -106,7 +125,8 @@ angular.module('everyquickApp', ['ionic', 'firebase'])
                 templateUrl: 'views/delivery-detail.html',
                 controller: 'DeliveryDetailCtrl'
             }
-        }
+        },
+        authRequired: true
     })
     .state('delivery.explore', {
         url: '/explore',
@@ -115,7 +135,8 @@ angular.module('everyquickApp', ['ionic', 'firebase'])
                 templateUrl: 'views/delivery-explore.html',
                 controller: 'DeliveryExploreCtrl'
             }
-        }
+        },
+        authRequired: false
     })
    .state('delivery.explore-detail', {
       url: '/explore/:id',
@@ -129,7 +150,8 @@ angular.module('everyquickApp', ['ionic', 'firebase'])
             reloadOnSearch: false,
             controller: 'DeliveryDetailCtrl'
          }
-      }
+      },
+      authRequired: false
    })
    .state('mypage', {
       url: '/mypage',
