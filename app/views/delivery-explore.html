@@ -4,7 +4,7 @@
 			<div class="item item-divider">
 				추천 운송 품목
 			</div>
-			<a class="item" ui-sref="tabs.delivery-detail({id: delivery.$id})" ng-repeat="delivery in deliveries">
+			<a class="item" ui-sref="delivery.explore-detail({id: delivery.$id})" ng-repeat="delivery in deliveries">
 				<div class="row">
 					<div class="col col-67 row">
 						<div class="col"><i class="icon ion-arrow-down-a"></i> {{delivery.dep.title}}</div>

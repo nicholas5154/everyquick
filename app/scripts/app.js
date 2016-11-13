@@ -61,8 +61,7 @@ angular.module('everyquickApp', ['ionic', 'firebase'])
     .state('send', {
         url: '/send',
         abstract: true,
-        templateUrl: 'views/send.html',
-        authRequired: true
+        templateUrl: 'views/send.html'
     })
     .state('send.home', {
         url: '/home',
