@@ -5,9 +5,41 @@
 			<div class="item item-divider">
 				배송정보
 			</div>
-			<a class="item" href="#">
-			{{deliveryId}}
+			
+			<a class="item item-avatar" href="#">
+				<h2>{{delivery.dep.title}}</h2>
+				<p>{{delivery.dep.address}}</p>
 			</a>
+			<a class="item item-avatar" href="#">
+				<h2>{{delivery.dest.title}}</h2>
+				<p>{{delivery.dest.address}}</p>
+			</a>
+
+			<a class="item" >
+				<div class="row">
+					<div class="col col-67 row">
+						<div class="col"><i class="icon ion-arrow-down-a"></i>{{delivery.datetime}}에 등록</div>
+					</div>
+					<div class="col"><h1 class="title">{{delivery.price}}원</h1></div>
+				</div>
+			</a>
+
+
+			<a class="item item-icon-left item-icon-right" href="#">
+				<i class="icon ion-flash"></i>
+					이 화물 운송 신청하기
+				<i class="icon ion-android-arrow-forward"></i>
+			</a>
+
+			<a class="item item-icon-left item-icon-right" href="#">
+				<i class="icon ion-trash"></i>
+					이 화물 운송 요청 삭제
+			</a>
+
+			<div class="item item-divider">
+				배송현황
+			</div>
+
 		</div>
 		
 	</ion-content>
