@@ -13,7 +13,6 @@ angular.module('everyquickApp')
 		$scope.sentDeliveriesRef = Delivery.getSent();
 		$scope.sentDeliveriesRef.$loaded().then(function(){
 			$scope.sentDeliveries = $scope.sentDeliveriesRef.map(function(x){
-				console.log(x.$value);
 				return Delivery.fetch(x.$value);
 			});
 		});

@@ -71,7 +71,6 @@ angular.module('everyquickApp')
 
 		$scope.selectDep = function(depObj){
 			$scope.formData.dep = depObj;
-			console.log(depObj);
 			$scope.formData.depList = [];
 			depMap.setCenter(
 				new daum.maps.LatLng(

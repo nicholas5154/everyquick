@@ -30,7 +30,17 @@ angular.module('everyquickApp')
 		};
 
 		var fetch = function(deliveryId){
-			return $firebaseObject(deliveriesRef.child(deliveryId));
+			var fobj = $firebaseObject(deliveriesRef.child(deliveryId));
+			fobj.$loaded().then(function(){
+				fobj.applyAsCarrier = function(deliveryId){
+					var applyingCarriers = $firebaseArray(fobj.$ref().child('applyingCarriers'));
+					applyingCarriers.$loaded().then(function(){
+						if(applyingCarriers.map(x => x.$value).indexOf(Auth.$getAuth().uid) === -1)
+							applyingCarriers.$add(Auth.$getAuth().uid);
+					});
+				}
+			});
+			return fobj;
 		};
 
 		var getSent = function(){
