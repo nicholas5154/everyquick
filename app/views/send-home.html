@@ -4,7 +4,7 @@
 			<div class="item item-divider">
 				내가 보낸 퀵
 			</div>
-			<a class="item" href="#" ng-repeat="sentDelivery in sentDeliveries">
+			<a class="item" ng-repeat="sentDelivery in sentDeliveries" ui-sref="send.detail({id: sentDelivery.$id})">
 				<div class="row">
 				  <div class="col col-67"><i class="icon ion-arrow-down-a"></i> {{sentDelivery.dep.title}}</div>
 				  <div class="col"><span class="badge badge-assertive">픽업 대기중</span></div>
