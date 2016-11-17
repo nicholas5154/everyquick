@@ -30,17 +30,22 @@ angular.module('everyquickApp')
 		};
 
 		var fetch = function(deliveryId){
-			var fobj = $firebaseObject(deliveriesRef.child(deliveryId));
-			fobj.$loaded().then(function(){
-				fobj.applyAsCarrier = function(deliveryId){
-					var applyingCarriers = $firebaseArray(fobj.$ref().child('applyingCarriers'));
+			var dobj = $firebaseObject.$extend({
+				applyAsCarrier: function(){
+					var applyingCarriers = $firebaseArray(this.$ref().child('applyingCarriers'));
 					applyingCarriers.$loaded().then(function(){
 						if(applyingCarriers.map(x => x.$value).indexOf(Auth.$getAuth().uid) === -1)
 							applyingCarriers.$add(Auth.$getAuth().uid);
 					});
+				},
+				$$updated: function(snap) {
+					var changed = $firebaseObject.prototype.$$updated.apply(this, arguments);
+					this.datetime = new Date(this.posted);
+					return changed;
 				}
+
 			});
-			return fobj;
+			return dobj(deliveriesRef.child(deliveryId));
 		};
 
 		var getSent = function(){

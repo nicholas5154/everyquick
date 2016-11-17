@@ -18,20 +18,20 @@
 			<a class="item" >
 				<div class="row">
 					<div class="col col-67 row">
-						<div class="col"><i class="icon ion-arrow-down-a"></i>{{delivery.datetime}}에 등록</div>
+						<div class="col"><i class="icon ion-arrow-down-a"></i>{{delivery.datetime.toLocaleDateString()}} {{delivery.datetime.toLocaleTimeString()}}에 등록</div>
 					</div>
 					<div class="col"><h1 class="title">{{delivery.price}}원</h1></div>
 				</div>
 			</a>
 
 
-			<a class="item item-icon-left item-icon-right" ng-click="applyAsCarrier()">
+			<a ng-if="mode=='delivery-explore'" class="item item-icon-left item-icon-right" ng-click="delivery.applyAsCarrier()">
 				<i class="icon ion-flash"></i>
 					이 화물 운송 신청하기
 				<i class="icon ion-android-arrow-forward"></i>
 			</a>
 
-			<a class="item item-icon-left item-icon-right" href="#">
+			<a ng-if="mode=='send'" class="item item-icon-left item-icon-right" href="#">
 				<i class="icon ion-trash"></i>
 					이 화물 운송 요청 삭제
 			</a>

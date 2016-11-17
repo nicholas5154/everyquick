@@ -10,13 +10,8 @@
 angular.module('everyquickApp')
 .controller('DeliveryDetailCtrl', ['$stateParams', '$scope', 'Delivery',
 	function ($stateParams, $scope, Delivery) {
+		$scope.mode = $stateParams.mode;
 		$scope.deliveryId = $stateParams.id;
 		$scope.delivery = Delivery.fetch($scope.deliveryId);
-		$scope.delivery.$loaded().then(function(){
-			$scope.delivery.datetime = new Date($scope.delivery.posted);
-			$scope.applyAsCarrier = function(){
-				$scope.delivery.applyAsCarrier();
-			};
-		});
 	}
 ]);
