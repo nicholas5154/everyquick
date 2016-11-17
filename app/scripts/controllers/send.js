@@ -10,11 +10,9 @@
 angular.module('everyquickApp')
 .controller('SendCtrl', ['$scope', 'Delivery',
 	function ($scope, Delivery) {
-		$scope.sentDeliveriesRef = Delivery.getSent();
-		$scope.sentDeliveriesRef.$loaded().then(function(){
-			$scope.sentDeliveries = $scope.sentDeliveriesRef.map(function(x){
-				return Delivery.fetch(x.$value);
-			});
+		var sentDeliveries = Delivery.getSent();
+		sentDeliveries.$loaded().then(function(){
+			$scope.sentDeliveries = sentDeliveries.map(x => Delivery.fetch(x.$value));
 		});
 	}
 ]);

@@ -16,7 +16,7 @@ angular.module('everyquickApp')
 			password: ''
 		};
 		$scope.login = function(){
-			firebase.auth().signInWithEmailAndPassword($scope.loginData.email, $scope.loginData.password)
+			Auth.signIn($scope.loginData.email, $scope.loginData.password)
 			.then(function(){
 	       		$state.go($stateParams.callback);
 			})
