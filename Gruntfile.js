@@ -69,7 +69,7 @@ module.exports = function (grunt) {
       },
       js: {
         files: ['<%= yeoman.app %>/<%= yeoman.scripts %>/**/*.js'],
-        tasks: ['sync:app', 'newer:jshint:all']
+        tasks: ['sync:app']
       },
       styles: {
         files: ['<%= yeoman.app %>/<%= yeoman.styles %>/**/*.css'],
@@ -99,24 +99,6 @@ module.exports = function (grunt) {
           open: true,
           base: ['coverage']
         }
-      }
-    },
-
-    // Make sure code styles are up to par and there are no obvious mistakes
-    jshint: {
-      options: {
-        jshintrc: '.jshintrc',
-        reporter: require('jshint-stylish')
-      },
-      all: [
-        'Gruntfile.js',
-        '<%= yeoman.app %>/<%= yeoman.scripts %>/**/*.js'
-      ],
-      test: {
-        options: {
-          jshintrc: 'test/.jshintrc'
-        },
-        src: ['test/unit/**/*.js']
       }
     },
 
@@ -439,7 +421,7 @@ module.exports = function (grunt) {
   grunt.registerTask('watch:karma', function () {
     var karma = {
       files: ['<%= yeoman.app %>/<%= yeoman.scripts %>/**/*.js', '<%= yeoman.test %>/spec/**/*.js'],
-      tasks: ['newer:jshint:test', 'karma:unit:run']
+      tasks: ['karma:unit:run']
     };
     grunt.config.set('watch', karma);
     return grunt.task.run(['watch']);
@@ -523,7 +505,6 @@ module.exports = function (grunt) {
 
   grunt.registerTask('default', [
     'wiredep',
-    'newer:jshint',
     'karma:continuous',
     'compress'
   ]);

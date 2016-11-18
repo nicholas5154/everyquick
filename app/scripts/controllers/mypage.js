@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 /**
 * @ngdoc function
@@ -8,9 +8,9 @@
 * Controller of the everyquickApp
 */
 angular.module('everyquickApp')
-.controller('MypageCtrl', ['$scope', 'Auth', 
-	function ($scope, Auth) {
-		$scope.auth = Auth.$getAuth();
-		$scope.profile = Auth.profile;
-	}
-]);
+.controller('MypageCtrl', ['$scope', 'Auth',
+  function ($scope, Auth) {
+    $scope.auth = Auth.$getAuth()
+    $scope.profile = Auth.profile
+  }
+])

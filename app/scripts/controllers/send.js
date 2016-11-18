@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 /**
 * @ngdoc function
@@ -9,10 +9,10 @@
 */
 angular.module('everyquickApp')
 .controller('SendCtrl', ['$scope', 'Delivery',
-	function ($scope, Delivery) {
-		var sentDeliveries = Delivery.getSent();
-		sentDeliveries.$loaded().then(function(){
-			$scope.sentDeliveries = sentDeliveries.map(x => Delivery.fetch(x.$value));
-		});
-	}
-]);
+  function ($scope, Delivery) {
+    var sentDeliveries = Delivery.getSent()
+    sentDeliveries.$loaded().then(function () {
+      $scope.sentDeliveries = sentDeliveries.map(x => Delivery.fetch(x.$value))
+    })
+  }
+])

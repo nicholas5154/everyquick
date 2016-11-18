@@ -20,7 +20,10 @@
 			<a class="item" >
 				<div class="row">
 					<div class="col col-67 row">
-						<div class="col"><i class="icon ion-clock"></i> {{delivery.datetime.toLocaleDateString()}} {{delivery.datetime.toLocaleTimeString()}}에 등록</div>
+						<div class="col">
+							<p><i class="icon ion-clock"></i> {{delivery.datetime.toLocaleDateString()}}</p>
+							<p>{{delivery.datetime.toLocaleTimeString()}}에 등록</p>
+						</div>
 					</div>
 					<div class="col"><h1 class="title">{{delivery.price}}원</h1></div>
 				</div>
@@ -33,7 +36,7 @@
 				<i class="icon ion-android-arrow-forward"></i>
 			</a>
 
-			<a ng-if="mode=='send'" class="item item-icon-left" href="#">
+			<a ng-if="mode=='send'" class="item item-icon-left item-assertive" href="#">
 				<i class="icon ion-trash-a"></i>
 					이 화물 운송 요청 삭제
 			</a>

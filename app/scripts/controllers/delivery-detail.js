@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 /**
 * @ngdoc function
@@ -9,9 +9,9 @@
 */
 angular.module('everyquickApp')
 .controller('DeliveryDetailCtrl', ['$stateParams', '$scope', 'Delivery',
-	function ($stateParams, $scope, Delivery) {
-		$scope.mode = $stateParams.mode;
-		$scope.deliveryId = $stateParams.id;
-		$scope.delivery = Delivery.fetch($scope.deliveryId);
-	}
-]);
+  function ($stateParams, $scope, Delivery) {
+    $scope.mode = $stateParams.mode
+    $scope.deliveryId = $stateParams.id
+    $scope.delivery = Delivery.fetch($scope.deliveryId)
+  }
+])

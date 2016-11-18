@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 /**
 * @ngdoc function
@@ -8,8 +8,7 @@
 * Controller of the everyquickApp
 */
 angular.module('everyquickApp')
-.controller('LandingCtrl', 
-	['$scope', 'Auth', '$state', '$ionicViewSwitcher', 
-	function($scope, Auth, $state, $ionicViewSwitcher) {
-	}
-]);
+.controller('LandingCtrl', ['$scope', 'Auth', '$state', '$ionicViewSwitcher',
+  function ($scope, Auth, $state, $ionicViewSwitcher) {
+  }
+])
