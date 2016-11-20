@@ -5,5 +5,10 @@ module.exports = {
     "plugins": [
         "standard",
         "promise"
-    ]
+    ],
+    "globals": {
+        "angular": true,
+        "cordova": true,
+        "firebase": true        
+    }
 };

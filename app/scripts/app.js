@@ -20,7 +20,7 @@ angular.module('everyquickApp', ['ionic', 'firebase'])
       cordova.plugins.Keyboard.disableScroll(true)
     }
     if (window.StatusBar) {
-      StatusBar.styleDefault()
+      window.StatusBar.styleDefault()
     }
   })
   $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
@@ -37,12 +37,12 @@ angular.module('everyquickApp', ['ionic', 'firebase'])
 // https://github.com/firebase/angularfire/blob/master/docs/guide/user-auth.md#authenticating-with-routers
 .config(function ($stateProvider, $urlRouterProvider) {
   $stateProvider
-   .state('landing', {
-     url: '/landing',
-     templateUrl: 'views/landing.html',
-     controller: 'LandingCtrl',
-     authRequired: false
-   })
+    .state('landing', {
+      url: '/landing',
+      templateUrl: 'views/landing.html',
+      controller: 'LandingCtrl',
+      authRequired: false
+    })
     .state('login', {
       url: '/login',
       templateUrl: 'views/login.html',
@@ -58,8 +58,14 @@ angular.module('everyquickApp', ['ionic', 'firebase'])
       controller: 'SignupCtrl',
       authRequired: false
     })
+    .state('sidebar', {
+      abstract: true,
+      templateUrl: 'views/sidebar.html',
+      controller: 'SidebarCtrl'
+    })
     .state('send', {
       url: '/send',
+      parent: 'sidebar',
       abstract: true,
       templateUrl: 'views/send.html'
     })
@@ -100,19 +106,20 @@ angular.module('everyquickApp', ['ionic', 'firebase'])
     .state('delivery', {
       url: '/delivery',
       abstract: true,
+      parent: 'sidebar',
       templateUrl: 'views/delivery.html'
     })
-   .state('delivery.my', {
-     url: '/my',
-     views: {
-       'delivery-my': {
-         templateUrl: 'views/delivery-home.html',
-         reloadOnSearch: false,
-         controller: 'DeliveryCtrl'
-       }
-     },
-     authRequired: true
-   })
+    .state('delivery.my', {
+      url: '/my',
+      views: {
+        'delivery-my': {
+          templateUrl: 'views/delivery-home.html',
+          reloadOnSearch: false,
+          controller: 'DeliveryCtrl'
+        }
+      },
+      authRequired: true
+    })
     .state('delivery.my-detail', {
       url: '/my/:id',
       params: {
@@ -137,27 +144,27 @@ angular.module('everyquickApp', ['ionic', 'firebase'])
       },
       authRequired: false
     })
-   .state('delivery.explore-detail', {
-     url: '/explore/:id',
-     params: {
-       id: null,
-       mode: 'delivery-explore'
-     },
-     views: {
-       'delivery-explore': {
-         templateUrl: 'views/delivery-detail.html',
-         reloadOnSearch: false,
-         controller: 'DeliveryDetailCtrl'
-       }
-     },
-     authRequired: false
-   })
-   .state('mypage', {
-     url: '/mypage',
-     templateUrl: 'views/mypage.html',
-     controller: 'MypageCtrl',
-     reloadOnSearch: false
-   })
+    .state('delivery.explore-detail', {
+      url: '/explore/:id',
+      params: {
+        id: null,
+        mode: 'delivery-explore'
+      },
+      views: {
+        'delivery-explore': {
+          templateUrl: 'views/delivery-detail.html',
+          reloadOnSearch: false,
+          controller: 'DeliveryDetailCtrl'
+        }
+      },
+      authRequired: false
+    })
+    .state('mypage', {
+      url: '/mypage',
+      templateUrl: 'views/mypage.html',
+      controller: 'MypageCtrl',
+      reloadOnSearch: false
+    })
   $urlRouterProvider.otherwise('/landing')
 })
 

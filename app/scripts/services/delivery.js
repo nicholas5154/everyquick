@@ -8,8 +8,8 @@
  * Factory in the everyquickApp.
  */
 angular.module('everyquickApp')
-.factory('Delivery', ['$firebaseArray', '$firebaseObject', 'Auth',
-  function ($firebaseArray, $firebaseObject, Auth) {
+.factory('Delivery', ['$firebaseArray', '$firebaseObject', 'Auth', 'Profile',
+  function ($firebaseArray, $firebaseObject, Auth, Profile) {
     var deliveriesRef = firebase.database().ref().child('deliveries')
     var deliveries = $firebaseArray(deliveriesRef)
 
@@ -19,6 +19,7 @@ angular.module('everyquickApp')
         dep: dep,
         dest: dest,
         price: price,
+        state: '모집중',
         posted: firebase.database.ServerValue.TIMESTAMP
       })
       .then(function (ref) {
@@ -30,22 +31,47 @@ angular.module('everyquickApp')
     }
 
     var fetch = function (deliveryId) {
-      var dobj = $firebaseObject.$extend({
-        applyAsCarrier: function () {
-          var applyingCarriers = $firebaseArray(this.$ref().child('applyingCarriers'))
-          applyingCarriers.$loaded().then(function () {
-            if (applyingCarriers.map(x => x.$value).indexOf(Auth.$getAuth().uid) === -1) {
-              applyingCarriers.$add(Auth.$getAuth().uid)
-            }
-          })
-        },
-        $$updated: function (snap) {
-          var changed = $firebaseObject.prototype.$$updated.apply(this, arguments)
-          this.datetime = new Date(this.posted)
-          return changed
-        }
-
-      })
+      var dobj = $firebaseObject
+        .$extend({
+          applyAsCarrier: function () {
+            var applyingCarriers = $firebaseArray(this.$ref().child('applyingCarriers'))
+            applyingCarriers.$loaded().then(function () {
+              if (applyingCarriers.map(x => x.$value).indexOf(Auth.$getAuth().uid) === -1) {
+                applyingCarriers.$add(Auth.$getAuth().uid)
+              }
+            })
+          },
+          $getApplicants: function () {
+            var applyingCarriers = $firebaseArray(this.$ref().child('applyingCarriers'))
+            return applyingCarriers.$loaded().then(function () {
+              return Promise.all(applyingCarriers.map(x => x.$value).map(x => Profile(x)))
+            })
+          },
+          selectCarrier: function (carrierId) {
+            var deObj = this
+            this.selectedCarrier = carrierId
+            return this.$save()
+              .then(function (ref) {
+                var carrierProfile = Profile(carrierId)
+                return carrierProfile.addCarryDelivery(ref.key)
+              })
+              .then(function (ref) {
+                return deObj.setState('픽업대기중')
+              })
+          },
+          getCarrier: function () {
+            return Profile(this.selectedCarrier)
+          },
+          $$updated: function (snap) {
+            var changed = $firebaseObject.prototype.$$updated.apply(this, arguments)
+            this.datetime = new Date(this.posted)
+            return changed
+          },
+          setState: function (newState) {
+            this.state = newState
+            return this.$save()
+          }
+        })
       return dobj(deliveriesRef.child(deliveryId))
     }
 
@@ -54,10 +80,16 @@ angular.module('everyquickApp')
       return $firebaseArray(sentRef)
     }
 
+    var getDelivering = function () {
+      var carryRef = Auth.profile.$ref().child('carryDeliveries')
+      return $firebaseArray(carryRef)
+    }
+
     return {
       post: post,
       fetch: fetch,
-      getSent: getSent
+      getSent: getSent,
+      getDelivering: getDelivering
     }
   }
 ])

@@ -4,13 +4,13 @@
 			<div class="item item-divider">
 				내가 운송중인 품목
 			</div>
-			<a class="item" href="#">
+			<a class="item" ui-sref="delivery.my-detail({id: delivery.$id})" ng-repeat="delivery in delivering">
 				<div class="row">
-					<div class="col col-67"><i class="icon ion-arrow-down-a"></i> 서울시 ㅇㅇ구 ㅇㅇ동 ㅇㅇ</div>
-					<div class="col"><span class="badge badge-assertive">픽업 대기중</span></div>
+					<div class="col col-67"><i class="icon ion-arrow-down-a"></i> {{delivery.dep.title}}</div>
+					<div class="col"><span class="badge badge-assertive">{{delivery.state}}</span></div>
 				</div>
 				<div class="row">
-					<div class="col col-67"><i class="icon ion-flag"></i> 서울시 ㅇㅇ구 ㅇㅇ동 ㅇㅇ</div>
+					<div class="col col-67"><i class="icon ion-flag"></i> {{delivery.dest.title}}</div>
 					<div class="col">2014-01-24:00기준</div>
 				</div>
 			</a>

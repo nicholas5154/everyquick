@@ -8,15 +8,20 @@
 * Factory in the everyquickApp.
 */
 angular.module('everyquickApp')
-.factory('Profile', ['$firebaseObject',
-  function ($firebaseObject) {
+.factory('Profile', ['$firebaseObject', '$firebaseArray',
+  function ($firebaseObject, $firebaseArray) {
     return function (username) {
-// create a reference to the database node where we will store our data
       var ref = firebase.database().ref('userData')
       var profileRef = ref.child(username)
-
-// return it as a synchronized object
-      return $firebaseObject(profileRef)
+      var pobj = $firebaseObject.$extend({
+        addSentDelivery: function (deliveryId) {
+          return $firebaseArray(this.$ref().child('sentDeliveries')).$add(deliveryId)
+        },
+        addCarryDelivery: function (deliveryId) {
+          return $firebaseArray(this.$ref().child('carryDeliveries')).$add(deliveryId)
+        }
+      })
+      return pobj(profileRef)
     }
   }
 ])

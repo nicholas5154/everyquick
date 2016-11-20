@@ -1,7 +1,7 @@
-<ion-view title="에브리퀵-운송하기">
+<ion-view>
 	<ion-content>
 		
-		<div class="list">
+		<div id="delivery-detail" class="list">
 			<div class="item item-divider">
 				배송정보
 			</div>
@@ -19,16 +19,16 @@
 
 			<a class="item" >
 				<div class="row">
-					<div class="col col-67 row">
+					<div class="col col-33 row">
 						<div class="col">
 							<p><i class="icon ion-clock"></i> {{delivery.datetime.toLocaleDateString()}}</p>
 							<p>{{delivery.datetime.toLocaleTimeString()}}에 등록</p>
 						</div>
 					</div>
-					<div class="col"><h1 class="title">{{delivery.price}}원</h1></div>
+					<div class="col col-33"><h1 class="title">{{delivery.price}}원</h1></div>
+					<div class="col"><span class="badge badge-assertive">{{delivery.state}}</span></div>
 				</div>
 			</a>
-
 
 			<a ng-if="mode=='delivery-explore'" class="item item-icon-left item-icon-right" ng-click="delivery.applyAsCarrier()">
 				<i class="icon ion-flash"></i>
@@ -36,14 +36,42 @@
 				<i class="icon ion-android-arrow-forward"></i>
 			</a>
 
-			<a ng-if="mode=='send'" class="item item-icon-left item-assertive" href="#">
-				<i class="icon ion-trash-a"></i>
-					이 화물 운송 요청 삭제
-			</a>
+			<div ng-if="mode=='send'">
+				<div ng-if="!delivery.selectedCarrier">
+					<div class="item item-divider">
+						이 배송에 지원한 운송인
+					</div>
+					<form>
+						<ion-scroll class="applicants" zooming="false" direction="x" style="height: 200px">
+							<ion-radio class="applicant" ng-repeat="applicant in applicants" ng-model="formData.applicantChoice" ng-value="applicant">
+								{{applicant.name}}
+							</ion-radio>
+						</ion-scroll>
+						<button class="button button-bar button-positive" ng-click="delivery.selectCarrier(formData.applicantChoice.$id)">
+							이 배송인 선택하기
+						</button>
+					</form>
+				</div>
+				<div ng-if="delivery.selectedCarrier" class="item item-divider">
+					이 배송에 선택된 운송인
+				</div>
+				<div class="item">
+					{{carrier.name}}
+				</div>
+			</div>
 
 			<div class="item item-divider">
 				배송현황
 			</div>
+
+			<div class="item">
+				배송현황이 없습니다.
+			</div>
+
+			<a ng-if="mode=='send'" class="item item-icon-left item-assertive" href="#">
+				<i class="icon ion-trash-a"></i>
+					이 화물 운송 요청 삭제
+			</a>
 
 		</div>
 		

@@ -49,3 +49,20 @@
 #send-new .location-list{
 	margin-bottom: 0px;
 }
+
+#delivery-detail .applicants .scroll{
+	display: table;
+	white-space: nowrap;
+} 
+
+#delivery-detail .applicant{
+	display: inline-block;
+	width: 150px;
+	height: 200px;
+	margin-left: 0px;
+	margin-right: -5px;
+}
+
+#delivery-detail .item-content{
+	height: 100%;
+}
