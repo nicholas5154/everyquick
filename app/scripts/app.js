@@ -170,4 +170,5 @@ angular.module('everyquickApp', ['ionic', 'firebase'])
 
 .config(function ($ionicConfigProvider) {
   $ionicConfigProvider.backButton.text('')
+  //$ionicConfigProvider.views.maxCache(0)
 })

@@ -2,6 +2,10 @@
 	<ion-content>
 		
 		<div id="delivery-detail" class="list">
+			<div ng-if="alert" class="item item-divider item-energized">
+				<i class="icon ion-alert"></i>
+				{{alert}}
+			</div>
 			<div class="item item-divider">
 				배송정보
 			</div>
@@ -37,7 +41,7 @@
 			</a>
 
 			<div ng-if="mode=='send'">
-				<div ng-if="!delivery.selectedCarrier">
+				<div ng-if="delivery.state === '모집중' && applicants.length>0">
 					<div class="item item-divider">
 						이 배송에 지원한 운송인
 					</div>
@@ -61,14 +65,24 @@
 			</div>
 
 			<div class="item item-divider">
-				배송현황
+				배송기록
 			</div>
 
-			<div class="item">
-				배송현황이 없습니다.
+			<div class="item" ng-repeat="log in delivery.logs">
+				<p><i class="icon ion-clock"></i> {{ log.datetime | date:'yyyy-MM-dd HH:mm:ss'}}</p>
+				{{log.message}}
 			</div>
 
-			<a ng-if="mode=='send'" class="item item-icon-left item-assertive" href="#">
+			<a ng-if="mode=='delivery-my' && delivery.state=='픽업대기중'" class="item item-icon-left item-royal" ng-click="delivery.reportPickup()">
+				<i class="icon ion-checkmark-round"></i>
+					화물 픽업 완료 보고하기
+			</a>
+			<a ng-if="mode=='delivery-my' && delivery.state=='배송중'" class="item item-icon-left item-balanced" ng-click="delivery.reportDelivery()">
+				<i class="icon ion-checkmark-round"></i>
+					배송 완료 보고하기
+			</a>
+
+			<a ng-if="mode=='send' && delivery.state=='모집중'" class="item item-icon-left item-assertive">
 				<i class="icon ion-trash-a"></i>
 					이 화물 운송 요청 삭제
 			</a>

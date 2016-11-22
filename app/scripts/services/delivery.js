@@ -50,17 +50,37 @@ angular.module('everyquickApp')
           selectCarrier: function (carrierId) {
             var deObj = this
             this.selectedCarrier = carrierId
+            var carrierProfile
             return this.$save()
               .then(function (ref) {
-                var carrierProfile = Profile(carrierId)
+                carrierProfile = Profile(carrierId)
                 return carrierProfile.addCarryDelivery(ref.key)
               })
               .then(function (ref) {
                 return deObj.setState('픽업대기중')
               })
+              .then(function (ref) {
+                return carrierProfile.$loaded().then(function (ref){
+                  return deObj.addLog('carrierSelected', '배송인으로 '+carrierProfile.name+'님이 선택되었습니다.')
+                })
+              })
           },
           getCarrier: function () {
             return Profile(this.selectedCarrier)
+          },
+          reportPickup: function () {
+            var deObj = this
+            return deObj.setState('배송중')
+              .then(function (ref) {
+                return deObj.addLog('pickedUp', '배송인이 화물을 수령하여 배송중입니다')
+              })
+          },
+          reportDelivery: function () {
+            var deObj = this
+            return deObj.setState('배송완료')
+              .then(function (ref) {
+                return deObj.addLog('delivered', '배송인이 화물 배송을 완료하였습니다')
+              })
           },
           $$updated: function (snap) {
             var changed = $firebaseObject.prototype.$$updated.apply(this, arguments)
@@ -70,6 +90,14 @@ angular.module('everyquickApp')
           setState: function (newState) {
             this.state = newState
             return this.$save()
+          },
+          addLog: function (type, message) {
+            var logs = $firebaseArray(this.$ref().child('logs'))
+            return logs.$add({
+              type: type,
+              message: message,
+              datetime: firebase.database.ServerValue.TIMESTAMP
+            })
           }
         })
       return dobj(deliveriesRef.child(deliveryId))

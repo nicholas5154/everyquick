@@ -15,7 +15,7 @@ angular.module('everyquickApp')
       // all server changes are applied in realtime
     $scope.messages = $firebaseArray(messagesRef)
       // create a query for the most recent 25 messages on the server
-    var query = messagesRef.orderByChild('timestamp').limitToLast(25)
+    var query = messagesRef.orderByChild('state').equalTo('모집중')
       // the $firebaseArray service properly handles database queries as well
     $scope.deliveries = $firebaseArray(query)
   }
