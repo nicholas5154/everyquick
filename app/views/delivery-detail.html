@@ -34,14 +34,14 @@
 				</div>
 			</a>
 
-			<a ng-if="mode=='delivery-explore'" class="item item-icon-left item-icon-right" ng-click="delivery.applyAsCarrier()">
+			<a ng-if="mode==='delivery-explore'" class="item item-icon-left item-icon-right" ng-click="delivery.applyAsCarrier()">
 				<i class="icon ion-flash"></i>
 					이 화물 운송 신청하기
 				<i class="icon ion-android-arrow-forward"></i>
 			</a>
 
-			<div ng-if="mode=='send'">
-				<div ng-if="delivery.state === '모집중' && applicants.length>0">
+			<div ng-if="mode==='send'">
+				<div ng-if="delivery.state ==== '모집중' && applicants.length>0">
 					<div class="item item-divider">
 						이 배송에 지원한 운송인
 					</div>
@@ -73,20 +73,26 @@
 				{{log.message}}
 			</div>
 
-			<a ng-if="mode=='delivery-my' && delivery.state=='픽업대기중'" class="item item-icon-left item-royal" ng-click="delivery.reportPickup()">
+			<a ng-if="mode==='delivery-my' && delivery.state==='픽업대기중'" class="item item-icon-left item-royal" ng-click="delivery.reportPickup()">
 				<i class="icon ion-checkmark-round"></i>
 					화물 픽업 완료 보고하기
 			</a>
-			<a ng-if="mode=='delivery-my' && delivery.state=='배송중'" class="item item-icon-left item-balanced" ng-click="delivery.reportDelivery()">
+			<a ng-if="mode==='delivery-my' && delivery.state==='배송중'" class="item item-icon-left item-balanced" ng-click="delivery.reportDelivery()">
 				<i class="icon ion-checkmark-round"></i>
 					배송 완료 보고하기
 			</a>
 
-			<a ng-if="mode=='send' && delivery.state=='모집중'" class="item item-icon-left item-assertive">
+			<a ng-if="mode==='send' && delivery.state==='모집중'" class="item item-icon-left item-assertive">
 				<i class="icon ion-trash-a"></i>
 					이 화물 운송 요청 삭제
 			</a>
-
+			
+			<div ng-if="delivery.state==='배송완료'">
+				<div class="item">
+					<rating ng-model="rating.rate" max="rating.max"></rating>
+				</div>
+				<button ng-if="rating.rate!==0" class="button button-bar">평가 반영</button>
+			</div>
 		</div>
 		
 	</ion-content>

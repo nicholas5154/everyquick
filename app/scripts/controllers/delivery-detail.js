@@ -12,7 +12,10 @@ angular.module('everyquickApp')
 .controller('DeliveryDetailCtrl', ['$stateParams', '$scope', 'Delivery', 'Auth', 'Profile',
   function ($stateParams, $scope, Delivery, Auth, Profile) {
     $scope.mode = $stateParams.mode
-    $scope.Date = Date
+    $scope.rating = {
+      rate: 0,
+      max: 5
+    }
     $scope.deliveryId = $stateParams.id
     $scope.delivery = Delivery.fetch($scope.deliveryId)
     $scope.delivery.$loaded()

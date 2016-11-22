@@ -11,7 +11,7 @@
 				</div>
 				<div class="row">
 					<div class="col col-67"><i class="icon ion-flag"></i> {{delivery.dest.title}}</div>
-					<div class="col">2014-01-24:00기준</div>
+					<div class="col">{{ delivery.lastStateChange | date:'yyyy-MM-dd HH:mm'}} 기준</div>
 				</div>
 			</a>
 		</div>

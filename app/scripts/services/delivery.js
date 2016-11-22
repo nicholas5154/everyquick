@@ -20,6 +20,7 @@ angular.module('everyquickApp')
         dest: dest,
         price: price,
         state: '모집중',
+        lastStateChange: firebase.database.ServerValue.TIMESTAMP, 
         posted: firebase.database.ServerValue.TIMESTAMP
       })
       .then(function (ref) {
@@ -89,6 +90,7 @@ angular.module('everyquickApp')
           },
           setState: function (newState) {
             this.state = newState
+            this.lastStateChange = firebase.database.ServerValue.TIMESTAMP 
             return this.$save()
           },
           addLog: function (type, message) {

@@ -66,3 +66,7 @@
 #delivery-detail .item-content{
 	height: 100%;
 }
+
+.rating{
+	text-align: center;
+}
