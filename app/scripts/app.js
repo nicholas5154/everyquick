@@ -38,12 +38,14 @@ angular.module('everyquickApp', ['ionic', 'firebase'])
 .config(function ($stateProvider, $urlRouterProvider) {
   $stateProvider
     .state('landing', {
-      url: '/landing',
+      cache: false,
+      url: '/',
       templateUrl: 'views/landing.html',
       controller: 'LandingCtrl',
       authRequired: false
     })
     .state('login', {
+      cache: false,
       url: '/login',
       templateUrl: 'views/login.html',
       controller: 'LoginCtrl',
@@ -53,23 +55,27 @@ angular.module('everyquickApp', ['ionic', 'firebase'])
       }
     })
     .state('signup', {
+      cache: false,
       url: '/signup',
       templateUrl: 'views/signup.html',
       controller: 'SignupCtrl',
       authRequired: false
     })
     .state('sidebar', {
+      cache: false,
       abstract: true,
       templateUrl: 'views/sidebar.html',
       controller: 'SidebarCtrl'
     })
     .state('send', {
+      cache: false,
       url: '/send',
       parent: 'sidebar',
       abstract: true,
       templateUrl: 'views/send.html'
     })
     .state('send.home', {
+      cache: false,
       url: '/home',
       views: {
         'send': {
@@ -80,6 +86,7 @@ angular.module('everyquickApp', ['ionic', 'firebase'])
       authRequired: true
     })
     .state('send.new', {
+      cache: false,
       url: '/new',
       views: {
         'send': {
@@ -90,6 +97,7 @@ angular.module('everyquickApp', ['ionic', 'firebase'])
       authRequired: true
     })
     .state('send.detail', {
+      cache: false,
       url: '/detail/:id',
       params: {
         id: null,
@@ -104,12 +112,14 @@ angular.module('everyquickApp', ['ionic', 'firebase'])
       authRequired: true
     })
     .state('delivery', {
+      cache: false,
       url: '/delivery',
       abstract: true,
       parent: 'sidebar',
       templateUrl: 'views/delivery.html'
     })
     .state('delivery.my', {
+      cache: false,
       url: '/my',
       views: {
         'delivery-my': {
@@ -121,6 +131,7 @@ angular.module('everyquickApp', ['ionic', 'firebase'])
       authRequired: true
     })
     .state('delivery.my-detail', {
+      cache: false,
       url: '/my/:id',
       params: {
         id: null,
@@ -135,6 +146,7 @@ angular.module('everyquickApp', ['ionic', 'firebase'])
       authRequired: true
     })
     .state('delivery.explore', {
+      cache: false,
       url: '/explore',
       views: {
         'delivery-explore': {
@@ -145,6 +157,7 @@ angular.module('everyquickApp', ['ionic', 'firebase'])
       authRequired: false
     })
     .state('delivery.explore-detail', {
+      cache: false,
       url: '/explore/:id',
       params: {
         id: null,
@@ -160,12 +173,13 @@ angular.module('everyquickApp', ['ionic', 'firebase'])
       authRequired: false
     })
     .state('mypage', {
+      cache: false,
       url: '/mypage',
       templateUrl: 'views/mypage.html',
       controller: 'MypageCtrl',
       reloadOnSearch: false
     })
-  $urlRouterProvider.otherwise('/landing')
+  $urlRouterProvider.otherwise('/')
 })
 
 .config(function ($ionicConfigProvider) {
