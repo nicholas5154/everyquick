@@ -1,0 +1,18 @@
+<ion-view title="자주 다니는 경로">
+	<ion-content>
+		<a class="item" ui-sref="delivery.froute-new">
+			새로운 경로 추가하기
+		</a>
+		<ion-list can-swipe="true" show-delete="true">
+			<ion-item class="item" ng-repeat="route in routes">
+				<div class="col col-67 row">
+					<div class="col"><i class="icon ion-arrow-down-a"></i> {{route.dep.title}}</div>
+					<div class="col"><i class="icon ion-flag"></i> {{route.dest.title}}</div>
+				</div>
+				<ion-delete-button class="ion-minus-circled"
+                       ng-click="removeRoute(route)">
+				</ion-delete-button>
+			</ion-item>
+		</ion-list>
+	</ion-content>
+</ion-view>

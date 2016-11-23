@@ -8,42 +8,31 @@
  * Factory in the everyquickApp.
  */
 angular.module('everyquickApp')
-.factory('CarrierRoute', ['$firebaseArray', 'EQSearch',
-  function ($firebaseArray, EQSearch) {
-    var routesRef = firebase.database().ref().child('routes')
-    var routes = $firebaseArray(routesRef)
-
-    var owner = function () {
-
-    }
-
+.factory('CarrierRoute', ['$firebaseArray', 'Auth', 'EQSearch',
+  function ($firebaseArray, Auth, EQSearch) {
     var fetch = function (routeId) {
-      return routes.$getRecord(routeId)
+      return Auth.profile.routes
     }
 
     var post = function (dep, dest) {
-// add this route to routesRef
-      var routeId
-      routes.$add({
+      var route = {
         dep: dep,
         dest: dest
-      }).then(function (ref) {
-// add this route to my profile
-        routeId = ref.key
-        var routeRef = Auth.profile.$ref().child('routes')
-        $firebaseArray(routeRef).$add(routeId)
-        .then(function (ref) {
-          EQSearch.registerRoute()
-        })
+      }
+      Auth.profile.addRoute(route)
+      .then(function (ref) {
+        EQSearch.registerRoute(route)
       })
     }
 
-    var remove = function () {
-
+    var remove = function (route) {
+      Auth.profile.removeRoute(route)
     }
 
     return {
-
+      fetch: fetch,
+      post: post,
+      remove: remove
     }
   }
 ])

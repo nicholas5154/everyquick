@@ -172,6 +172,29 @@ angular.module('everyquickApp', ['ionic', 'firebase', 'ionic.rating'])
       },
       authRequired: false
     })
+    .state('delivery.froutes', {
+      cache: false,
+      url: '/route/',
+      views: {
+        'delivery-explore': {
+          templateUrl: 'views/frequent-routes.html',
+          reloadOnSearch: false,
+          controller: 'FrequentRoutesCtrl'
+        }
+      },
+      authRequired: true
+    })
+    .state('delivery.froute-new', {
+      cache: false,
+      views: {
+        'delivery-explore': {
+          templateUrl: 'views/frequent-route-new.html',
+          reloadOnSearch: false,
+          controller: 'FrequentRouteCtrl'
+        }
+      },
+      authRequired: true
+    })
     .state('mypage', {
       cache: false,
       url: '/mypage',
@@ -184,5 +207,5 @@ angular.module('everyquickApp', ['ionic', 'firebase', 'ionic.rating'])
 
 .config(function ($ionicConfigProvider) {
   $ionicConfigProvider.backButton.text('')
-  //$ionicConfigProvider.views.maxCache(0)
+  // $ionicConfigProvider.views.maxCache(0)
 })

@@ -19,6 +19,19 @@ angular.module('everyquickApp')
         },
         addCarryDelivery: function (deliveryId) {
           return $firebaseArray(this.$ref().child('carryDeliveries')).$add(deliveryId)
+        },
+        addRoute: function (route) {
+          var routes = $firebaseArray(this.$ref().child('routes'))
+          return routes.$add(route)
+        },
+        getRoutes: function () {
+          return $firebaseArray(this.$ref().child('routes'))
+        },
+        removeRoute: function (route) {
+          var routes = $firebaseArray(this.$ref().child('routes'))
+          routes.$loaded().then(function () {
+            routes.$remove(routes.$getRecord(route.$id))
+          })
         }
       })
       return pobj(profileRef)
