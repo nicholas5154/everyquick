@@ -70,3 +70,34 @@
 .rating{
 	text-align: center;
 }
+
+#main-landing {
+	display:flex;
+	flex-direction: column;
+	justify-content: center;
+	height: 100%;
+}
+
+header#main-landing {
+	background:linear-gradient(-45deg, #bb417c 0%, #2288a5 100%);
+}
+
+#main-landing div{
+	margin: 10px 25px;
+}
+
+#main-landing a{
+	width: 100%;
+}
+
+#main-landing h1{
+	font-size: 70px;
+	font-weight: 500; 
+  	color: #ffffff;
+	text-align: center;
+}
+
+#main-landing p{
+  	color: #ffffff;
+	text-align: center;
+}
