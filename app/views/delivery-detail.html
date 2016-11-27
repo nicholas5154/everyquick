@@ -82,7 +82,7 @@
 					배송 완료 보고하기
 			</a>
 
-			<a ng-if="mode==='send' && delivery.state==='모집중'" class="item item-icon-left item-assertive">
+			<a ng-if="mode==='send' && delivery.state==='모집중'" class="item item-icon-left item-assertive" ng-click="delivery.deleteDelivery()">
 				<i class="icon ion-trash-a"></i>
 					이 화물 운송 요청 삭제
 			</a>

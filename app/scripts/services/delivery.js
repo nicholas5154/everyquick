@@ -83,6 +83,15 @@ angular.module('everyquickApp')
                 return deObj.addLog('delivered', '배송인이 화물 배송을 완료하였습니다')
               })
           },
+          deleteDelivery: function () {
+            var deObj = this
+            console.log(getSent())
+            return this.$remove()
+              .then(function(ref) {
+                var robj = $firebaseObject(getSent().$ref().orderByValue().equalTo(deliveryId))
+                robj.$remove()
+              })
+          },
           $$updated: function (snap) {
             var changed = $firebaseObject.prototype.$$updated.apply(this, arguments)
             this.datetime = new Date(this.posted)
