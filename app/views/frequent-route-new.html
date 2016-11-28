@@ -11,7 +11,7 @@
 					<div class="item item-button-right" ng-repeat="depLoc in formData.depList">{{depLoc.title}} <button type="button" class="button" ng-click="selectDep(depLoc)">출발</button>
 					</div>
 				</div>
-				<div id="dep_map" class="map-small"></div>
+				<div ng-show="formData.dep.id" id="dep_map" class="map-small"></div>
 				<label class="item item-input item-stacked-label">
 					<span class="input-label">도착지</span>
 					<input type="text" placeholder="" ng-model="formData.dest.title" ng-change="destNameChanged()" ng-model-options="{ debounce: 250 }">
@@ -20,7 +20,7 @@
 					<div class="item item-button-right" ng-repeat="destLoc in formData.destList">{{destLoc.title}} <button type="button" class="button" ng-click="selectDest(destLoc)">도착</button>
 					</div>
 				</div>
-				<div id="dest_map" class="map-small"></div>
+				<div ng-show="formData.dest.id" id="dest_map" class="map-small"></div>
 			</div>
 			<div class="text-center padding">
 				<button class="button button-block button-positive"><span class="icon ion-check-round"></span>등록</button>

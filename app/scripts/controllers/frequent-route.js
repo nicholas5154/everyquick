@@ -11,8 +11,8 @@ angular.module('everyquickApp')
 .controller('FrequentRouteCtrl', ['$scope', 'CarrierRoute',
   function ($scope, CarrierRoute) {
     $scope.formData = {
-      dep: {},
-      dest: {},
+      dep: null,
+      dest: null,
       depList: [],
       destList: [],
       price: 3000

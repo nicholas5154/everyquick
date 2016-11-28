@@ -186,6 +186,7 @@ angular.module('everyquickApp', ['ionic', 'firebase', 'ionic.rating'])
     })
     .state('delivery.froute-new', {
       cache: false,
+      url: '/route/new',
       views: {
         'delivery-explore': {
           templateUrl: 'views/frequent-route-new.html',

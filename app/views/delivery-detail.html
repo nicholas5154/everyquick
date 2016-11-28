@@ -41,7 +41,7 @@
 			</a>
 
 			<div ng-if="mode==='send'">
-				<div ng-if="delivery.state ==== '모집중' && applicants.length>0">
+				<div ng-if="delivery.state === '모집중' && applicants.length>0">
 					<div class="item item-divider">
 						이 배송에 지원한 운송인
 					</div>
@@ -88,6 +88,12 @@
 			</a>
 			
 			<div ng-if="delivery.state==='배송완료'">
+				<div ng-if="mode==='delivery-my'" class="item item-divider">
+					이 퀵의 발송인에 대한 리뷰 남기기
+				</div>
+				<div ng-if="mode==='send'" class="item item-divider">
+					이 퀵의 배송인에 대한 리뷰 남기기
+				</div>
 				<div class="item">
 					<rating ng-model="rating.rate" max="rating.max"></rating>
 				</div>
