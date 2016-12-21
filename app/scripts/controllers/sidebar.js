@@ -8,8 +8,8 @@
 * Controller of the everyquickApp
 */
 angular.module('everyquickApp')
-.controller('SidebarCtrl', ['$scope', '$ionicSideMenuDelegate', 'Auth',
-  function ($scope, $ionicSideMenuDelegate, Auth) {
+.controller('SidebarCtrl', ['$scope', '$ionicSideMenuDelegate',
+  function ($scope, $ionicSideMenuDelegate) {
     $ionicSideMenuDelegate.edgeDragThreshold(1)
     $ionicSideMenuDelegate.canDragContent(false)
   }
