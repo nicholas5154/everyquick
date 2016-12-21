@@ -5,7 +5,13 @@
 				추천 운송 품목
 			</div>
 			<a class="item item-icon-right" ui-sref="delivery.froutes">자주 다니는 경로 편집하기<i class="icon ion-android-arrow-forward"></i></a>
-			<a class="item" ui-sref="delivery.explore-detail({id: delivery.$id})" ng-repeat="delivery in deliveries">
+			<div class="item item-divider" ng-init="order='posted'">
+				<input type="radio" ng-model="order" value="posted"> 최신순 
+				<input type="radio" ng-model="order" value="price"> 가격순 
+                <input type="radio" ng-model="order" value="dist"> 거리순 
+                <input type="checkbox" ng-model="reverse"> 역순으로 정렬 
+			</div>
+			<a class="item" ui-sref="delivery.explore-detail({id: delivery.$id})" ng-repeat="delivery in deliveries | orderBy:order:reverse" >
 				<div class="row">
 					<div class="col col-67 row">
 						<div class="col"><i class="icon ion-arrow-down-a"></i> {{delivery.dep.title}}</div>
